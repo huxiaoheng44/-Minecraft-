@@ -1,0 +1,3 @@
+name: MinecraftServer
+version: @version@
+main: peace.minecraftserver.MinecraftServer
