@@ -1,3 +1,10 @@
 name: MinecraftServer
 version: @version@
 main: peace.minecraftserver.MinecraftServer
+depends:
+  - Vault
+commands:
+  getMoney:
+    description: This is a money demo command.
+    usage: /<getMoney>
+  playtime:
