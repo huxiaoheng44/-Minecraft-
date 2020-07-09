@@ -98,7 +98,14 @@ public class Mysql {
 
     public void createTable(){
         //在线时长表
-        update("CREATE TABLE IF NOT EXISTS playtimeplus (UUID VARCHAR(100), Name VARCHAR(100), Seconds INT(100), LastdaySeconds INT(100)) default 0");
+        update("CREATE TABLE IF NOT EXISTS `playtime` (\n" +
+                "  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',\n" +
+                "\t`UUID` VARCHAR(100) COMMENT '用户id',\n" +
+                "\t`Name` VARCHAR(100) COMMENT '用户名',\n" +
+                "\t`Seconds` INT(100) COMMENT '总的在线时间',\n" +
+                "\t`LastdaySeconds` INT(100) default 0 COMMENT '历史在线时间',\n" +
+                "\t PRIMARY KEY (`id`) USING BTREE\n" +
+                ") ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;");
 
         //保险表
         update("CREATE TABLE IF NOT EXISTS `guarantee`  (\n" +
@@ -108,6 +115,7 @@ public class Mysql {
                 "  `expires` int(100) NOT NULL DEFAULT 0 COMMENT '过期时间',\n" +
                 "  PRIMARY KEY (`orderid`) USING BTREE\n" +
                 ") ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;");
+
         //签到表
         update("CREATE TABLE IF NOT EXISTS `checkin`  (\n" +
                 "  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',\n" +
@@ -280,7 +288,7 @@ public class Mysql {
     public void setTime(OfflinePlayer p, int second) {
         if (!isUserExist(p.getUniqueId().toString()))
             try {
-                PreparedStatement ps = this.connection.prepareStatement("INSERT INTO playtimeplus (UUID,Name,Seconds) VALUES (?,?,?)");
+                PreparedStatement ps = this.connection.prepareStatement("INSERT INTO playtime (UUID,Name,Seconds) VALUES (?,?,?)");
                 ps.setString(1, p.getUniqueId().toString());
                 ps.setString(2, p.getName());
                 ps.setInt(3, 0);
@@ -290,7 +298,7 @@ public class Mysql {
             }
         else {
             try {
-                PreparedStatement ps = this.connection.prepareStatement("UPDATE playtimeplus SET Name = ?, Seconds = ? WHERE UUID = ?");
+                PreparedStatement ps = this.connection.prepareStatement("UPDATE playtime SET Name = ?, Seconds = ? WHERE UUID = ?");
                 ps.setString(1, p.getName());
                 ps.setInt(2, second);
                 ps.setString(3, p.getUniqueId().toString());
@@ -303,7 +311,7 @@ public class Mysql {
 
     public Integer getSeconds(String uuid) {
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT Seconds FROM playtimeplus WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT Seconds FROM playtime WHERE UUID = ?");
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
@@ -317,7 +325,7 @@ public class Mysql {
     public Integer TodaydaySeconds(String uuid) {
         Integer now,lastday;
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT Seconds,LastdaySeconds FROM playtimeplus WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT Seconds,LastdaySeconds FROM playtime WHERE UUID = ?");
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -334,7 +342,7 @@ public class Mysql {
     public List<String> getUsers() {
         List<String> list = new ArrayList<>();
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM playtimeplus");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM playtime");
             ResultSet rs = ps.executeQuery();
             while (rs.next())
                 list.add((String)rs.getObject("uuid"));
@@ -346,7 +354,7 @@ public class Mysql {
 
     public boolean isUserExist(String uuid) {
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT Name FROM playtimeplus WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT Name FROM playtime WHERE UUID = ?");
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
             return rs.next();
