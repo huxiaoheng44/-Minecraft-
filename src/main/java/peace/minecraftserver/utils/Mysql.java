@@ -75,6 +75,7 @@ public class Mysql {
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("connected to database!");
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("数据库错误:"+e.getSQLState());
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("not connect to database! :"+e.toString());
             }
     }

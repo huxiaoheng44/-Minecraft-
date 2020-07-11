@@ -9,6 +9,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bukkit.scheduler.BukkitRunnable;
+import peace.minecraftserver.CommendExecutor.CheatCommandExecutor;
+import peace.minecraftserver.CommendExecutor.EconomyCommandExecutor;
+import peace.minecraftserver.CommendExecutor.ShowCommandExecutor;
+import peace.minecraftserver.EventListener.*;
 import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
 import peace.minecraftserver.commands.CommandManager;
@@ -52,9 +56,13 @@ public final class MinecraftServer extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        getLogger().info("_____________");
-        getLogger().info("实训MC插件");
-        getLogger().info("_____________");
+
+        //初始化一些东西，具体函数在下面
+        init();
+
+        getLogger().info("___________________");
+        getLogger().info("平安组Minecraft插件");
+        getLogger().info("___________________");
         economy_init();
         //mysql_init();
         playtime_init();
@@ -140,5 +148,42 @@ public final class MinecraftServer extends JavaPlugin {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+    }
+
+    //在enable之前的一些启动项
+    private void init(){
+        plugin = this;
+        //玩家加入监听器
+        //Bukkit.getPluginManager().registerEvents(new addEventListener(),this);
+        //粒子特效监听器
+        Bukkit.getPluginManager().registerEvents(new EffectEvent(),this);
+        //坐骑监听器
+        Bukkit.getPluginManager().registerEvents(new TeleHorseListener(),this);
+        //GUI监听器
+        Bukkit.getPluginManager().registerEvents(new VexViewListener(),this);
+        //安全区域监听器
+        Bukkit.getPluginManager().registerEvents(new SaveAreaEvent(),this);
+
+        this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
+        this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
+        this.getCommand("Cheat").setExecutor(new CheatCommandExecutor(this));
+        //getLogger().info("----------第一个plugin启动------------");
+//        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+//            getLogger().info("----------没有发现Vault，插件无法继续使用！------------");
+//            //禁用插件
+//            getServer().getPluginManager().disablePlugin(this);
+//        }
+//        //vaultUtil used for economy
+//        if(VaultUtil.setEconomy()){
+//            plugin.getLogger().info("--------------vaultutil启动成功------------------");
+//        }else{
+//            plugin.getLogger().info("----------------vaultutil启动失败--------------");
+//        }
+//        //vexGUI
+//        if(Bukkit.getPluginManager().isPluginEnabled("VexView")){
+//            plugin.getLogger().info("----------成功启动VexView---------");
+//        }else{
+//            plugin.getLogger().info("----------VexView启动失败----------");
+//        }
     }
 }
