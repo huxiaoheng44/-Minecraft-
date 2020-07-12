@@ -1,0 +1,62 @@
+# :::::::::  :::            :::     :::   ::: ::::::::::: ::::::::::: ::::    ::::  ::::::::::               
+# :+:    :+: :+:          :+: :+:   :+:   :+:     :+:         :+:     +:+:+: :+:+:+ :+:             :+:      
+# +:+    +:+ +:+         +:+   +:+   +:+ +:+      +:+         +:+     +:+ +:+:+ +:+ +:+             +:+      
+# +#++:++#+  +#+        +#++:++#++:   +#++:       +#+         +#+     +#+  +:+  +#+ +#++:++#   +#++:++#++:++ 
+# +#+        +#+        +#+     +#+    +#+        +#+         +#+     +#+       +#+ +#+             +#+      
+# #+#        #+#        #+#     #+#    #+#        #+#         #+#     #+#       #+# #+#             #+#      
+# ###        ########## ###     ###    ###        ###     ########### ###       ### ##########               
+
+
+#MySQL
+
+mysql: true
+
+mysql-host: 127.0.0.1
+mysql-port: 3306
+mysql-database: 'playtime'
+mysql-username: 'root'
+mysql-password: '123456'
+
+
+#Autosave
+#Automatically saves the player's playtime
+
+autosave: false
+
+#20 Ticks = 1 Second
+autosave-interval: 1200
+
+
+#AFK
+
+afk: false
+afk-delay: 300 #Seconds
+
+#Messages
+
+prefix: '&6[&bPlaytime&6]&f'
+
+message-set-playtime: '%prefix% &e%player%''s &fplaytime is now &e%hours% hours %minutes% minutes %seconds% senconds&f!'
+message-player-has-never-played: '%prefix% This player has never played on this server!'
+message-no-permission: '%prefix% You do not have access to this command!'
+message-unknown-command: '%prefix% Unknown command! Use &e/playtime help &fto get a list of commands.'
+
+message-playtime:
+   - '&6==================[&bPlaytime&6]=================='
+   - '&3Your playtime: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&6============================================'
+message-playtime-other:
+   - '&6==================[&bPlaytime&6]=================='
+   - '&3%player%: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&6============================================'
+message-help:
+   - '&6==================[&bPlaytime&6]=================='
+   - '&7/playtime:'
+   - '&fShows your playtime'
+   - '&7/playtime [player]:'
+   - '&fShows another player''s playtime'
+   - '&7/playtime top10:'
+   - '&fShows the players with the most playtime'
+   - '&7/playtime set [player] [hours] [minutes] [seconds]:'
+   - '&fChanges the playtime of the player'
+   - '&6============================================'
