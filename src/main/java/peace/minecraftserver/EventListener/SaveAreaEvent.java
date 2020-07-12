@@ -58,6 +58,7 @@ public class SaveAreaEvent implements Listener {
     @EventHandler
     public void EntityDamage(EntityDamageByEntityEvent event){
         Player player = (Player) event.getDamager();
+        //如果点击到的是放商品的ITEM_FRAME
         if(event.getEntity().getType().equals(ITEM_FRAME)){
             event.setCancelled(true);
             ItemFrame frame = (ItemFrame)event.getEntity();

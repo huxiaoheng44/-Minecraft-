@@ -21,6 +21,9 @@ public class EffectEvent implements Listener {
             //location.getWorld().playEffect(location, Effect.ENDER_SIGNAL, 1);
         }
     }
+
+    //购买飞行功能的代码卸载这里
+
     @EventHandler
     public void onPlayerInteractBlock(PlayerInteractEvent event) {
         Player player = event.getPlayer();

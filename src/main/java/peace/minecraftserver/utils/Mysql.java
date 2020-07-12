@@ -98,6 +98,12 @@ public class Mysql {
     }
 
     public void createTable(){
+        update("CREATE EVENT IF NOT EXISTS `update`\n" +
+                "ON SCHEDULE\n" +
+                "EVERY '1' DAY STARTS '2019-07-09 00:00:00'\n" +
+                "DO update playtime set LastdaySeconds = Seconds;\n" +
+                "\n" +
+                "CREATE DATABASE IF NOT EXISTS `safetyplugin`;");
         //在线时长表
         update("CREATE TABLE IF NOT EXISTS `playtime` (\n" +
                 "  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',\n" +
