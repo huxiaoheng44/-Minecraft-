@@ -58,7 +58,9 @@ public class FunctionGui {
         vexComponentsList.add(new VexButton(4,"返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionMain(player));
         }));
+
         vexComponentsList.add(new VexButton("getLoc","显示坐标","[local]button.png","[local]button_.png",-1,80,120,30,p -> {
+
 
         }));
         vexComponentsList.add(new VexButton(2,"我也不知道还有啥功能","[local]button.png","[local]button_.png",-1,140,120,30,player1 -> {

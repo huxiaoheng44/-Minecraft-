@@ -11,6 +11,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
+
+import peace.minecraftserver.VexView.MainGui;
 import peace.minecraftserver.utils.TitleApi;
 
 public class ShowCommandExecutor implements CommandExecutor {
@@ -84,8 +86,10 @@ public class ShowCommandExecutor implements CommandExecutor {
                     return true;
                 }else if(strings[0].equalsIgnoreCase("gui")){
                     MinecraftServer.plugin.getLogger().info("成功打开GUI");
-                    VexViewAPI.openGui(player, InsureGui.InsureMainGui(player));
-                    TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
+
+                    VexViewAPI.openGui(player, MainGui.main(player));
+
+                    //TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
                     return true;
                 }else if(strings[0].equalsIgnoreCase("ren")){
                     TagDirection td = new TagDirection(0,180,0,true,false);

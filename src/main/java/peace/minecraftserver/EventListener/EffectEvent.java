@@ -22,7 +22,7 @@ public class EffectEvent implements Listener {
         }
     }
 
-    //购买飞行功能的代码卸载这里
+
 
     @EventHandler
     public void onPlayerInteractBlock(PlayerInteractEvent event) {
