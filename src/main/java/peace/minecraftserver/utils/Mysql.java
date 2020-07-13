@@ -71,8 +71,10 @@ public class Mysql {
     public void connect() {
         if (!isConnected())
             try {
+                MinecraftServer.plugin.getLogger().info(this.password+this.username);
                 this.connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + "?autoReconnect=true"+"&useSSL=false", this.username, this.password);
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("connected to database!");
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("not connect to database! :"+e.toString());
@@ -111,7 +113,7 @@ public class Mysql {
         update("CREATE TABLE IF NOT EXISTS `guarantee`  (\n" +
                 "  `orderid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'orderID',\n" +
                 "\t`UUID` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户id',\n" +
-                "\t`gid` VARCHAR(12) NOT NULL DEFAULT 0 COMMENT '保险编号',\n" +
+                "\t`gid` VARCHAR(255) NOT NULL DEFAULT 0 COMMENT '保险编号',\n" +
                 "  `expires` int(100) NOT NULL DEFAULT 0 COMMENT '过期时间',\n" +
                 "  PRIMARY KEY (`orderid`) USING BTREE\n" +
                 ") ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;");
@@ -173,13 +175,30 @@ public class Mysql {
             PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ?");
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                MinecraftServer.plugin.getLogger().info("true");
+            }
             return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-
+    public List<String> getAllInsure(String uuid){
+        List<String> insures=new ArrayList<>();
+        try {
+            PreparedStatement ps=this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID=?");
+            ps.setString(1,uuid);
+            ResultSet resultSet=ps.executeQuery();
+            while (resultSet.next()){
+                insures.add(resultSet.getString("gid"));
+            }
+            return insures;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     /*
     签到表
      */

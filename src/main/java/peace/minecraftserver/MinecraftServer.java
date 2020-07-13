@@ -13,6 +13,7 @@ import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
 import peace.minecraftserver.commands.CommandManager;
 import peace.minecraftserver.listener.InventoryListener;
+import peace.minecraftserver.listener.PlayerInsureListener;
 import peace.minecraftserver.listener.PlayerListener;
 import peace.minecraftserver.utils.*;
 
@@ -55,6 +56,7 @@ public final class MinecraftServer extends JavaPlugin {
         getLogger().info("_____________");
         getLogger().info("实训MC插件");
         getLogger().info("_____________");
+        Bukkit.getPluginManager().registerEvents(new PlayerInsureListener(),this);
         economy_init();
         //mysql_init();
         playtime_init();
