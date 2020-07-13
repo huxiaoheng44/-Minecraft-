@@ -3,8 +3,14 @@ version: @version@
 main: peace.minecraftserver.MinecraftServer
 depends:
   - Vault
+  - TitleAPI
+  - VexView
 commands:
   getMoney:
     description: This is a money demo command.
     usage: /<getMoney>
   playtime:
+  insure:
+  money:
+  show:
+  cheat:
