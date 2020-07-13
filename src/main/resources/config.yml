@@ -15,7 +15,10 @@ mysql-host: 127.0.0.1
 mysql-port: 3306
 mysql-database: 'safetyplugin'
 mysql-username: 'root'
-mysql-password: 'hxh19981225'
+
+mysql-password: '1484sbjsjyd'
+
+#mysql-password: 'hxh19981225'
 
 
 

@@ -40,9 +40,13 @@ dependencies {
     compile fileTree(dir:'libs',includes: ["*.jar"])
 }
 
-//compileJava {
-//    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-//}
+
+compileJava {
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+}
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
 
 import org.apache.tools.ant.filters.ReplaceTokens
 

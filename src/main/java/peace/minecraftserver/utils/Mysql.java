@@ -71,8 +71,10 @@ public class Mysql {
     public void connect() {
         if (!isConnected())
             try {
+                MinecraftServer.plugin.getLogger().info(this.password+this.username);
                 this.connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + "?autoReconnect=true"+"&useSSL=false", this.username, this.password);
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("connected to database!");
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println("数据库错误:"+e.getSQLState());
@@ -121,7 +123,7 @@ public class Mysql {
         update("CREATE TABLE IF NOT EXISTS `guarantee`  (\n" +
                 "  `orderid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'orderID',\n" +
                 "\t`UUID` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户id',\n" +
-                "\t`gid` VARCHAR(12) NOT NULL DEFAULT 0 COMMENT '保险编号',\n" +
+                "\t`gid` VARCHAR(255) NOT NULL DEFAULT 0 COMMENT '保险编号',\n" +
                 "  `expires` int(100) NOT NULL DEFAULT 0 COMMENT '过期时间',\n" +
                 "  PRIMARY KEY (`orderid`) USING BTREE\n" +
                 ") ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;");
@@ -141,7 +143,7 @@ public class Mysql {
      */
 
     public void setGuarantee(OfflinePlayer p, String gid,int expires){
-        if (!isUserExistInGuarantee(p.getUniqueId().toString()))
+        if (!isUserExistInGuarantee(p.getUniqueId().toString(),gid))
             try {
                 PreparedStatement ps = this.connection.prepareStatement("INSERT INTO guarantee (UUID,gid,expires) VALUES (?,?,?)");
                 ps.setString(1, p.getUniqueId().toString());
@@ -178,10 +180,11 @@ public class Mysql {
         return Integer.valueOf(-1);
     }
 
-    public boolean isUserExistInGuarantee(String uuid) {
+    public boolean isUserExistInGuarantee(String uuid,String gid) {
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ? and gid=?");
             ps.setString(1, uuid);
+            ps.setString(2,gid);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -189,7 +192,34 @@ public class Mysql {
             return false;
         }
     }
+    //获取用户所有保险
+    public List<String> getAllInsure(String uuid){
+        List<String> insures=new ArrayList<>();
+        try {
+            PreparedStatement ps=this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID=?");
+            ps.setString(1,uuid);
+            ResultSet resultSet=ps.executeQuery();
+            while (resultSet.next()){
+                insures.add(resultSet.getString("gid"));
+            }
+            return insures;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    //删除用户对应的保险
+    public void deletInsure(String uuid,String gid){
+        try {
+            PreparedStatement ps = this.connection.prepareStatement("DELETE  FROM guarantee WHERE UUID = ? and gid=?");
+            ps.setString(1, uuid);
+            ps.setString(2,gid);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
 
+        }
+    }
     /*
     签到表
      */

@@ -17,6 +17,7 @@ import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
 import peace.minecraftserver.commands.CommandManager;
 import peace.minecraftserver.listener.InventoryListener;
+import peace.minecraftserver.listener.PlayerInsureListener;
 import peace.minecraftserver.listener.PlayerListener;
 import peace.minecraftserver.utils.*;
 
@@ -56,7 +57,6 @@ public final class MinecraftServer extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-
         //初始化一些东西，具体函数在下面
         init();
 
@@ -163,6 +163,8 @@ public final class MinecraftServer extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new VexViewListener(),this);
         //安全区域监听器
         Bukkit.getPluginManager().registerEvents(new SaveAreaEvent(),this);
+        //保险模块监听
+        Bukkit.getPluginManager().registerEvents(new PlayerInsureListener(),this);
         //注册FunctionGUI监听器
         Bukkit.getPluginManager().registerEvents(new FunctionButtonEvent(),this);
 

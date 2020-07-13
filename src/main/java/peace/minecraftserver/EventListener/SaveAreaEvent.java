@@ -2,6 +2,7 @@ package peace.minecraftserver.EventListener;
 
 
 import lk.vexview.api.VexViewAPI;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
 import peace.minecraftserver.utils.PeaceAreaUtil;
 import peace.minecraftserver.utils.TitleApi;
@@ -56,8 +58,7 @@ public class SaveAreaEvent implements Listener {
     }
 
     @EventHandler
-    public void EntityDamage(EntityDamageByEntityEvent event){
-
+    public void EntityDamage(EntityDamageByEntityEvent event) {
 
         //如果点击到的是放商品的ITEM_FRAME
 
@@ -73,6 +74,7 @@ public class SaveAreaEvent implements Listener {
         else if(PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
             event.getDamager().sendMessage("你不能伤害其他其他人");
             event.setCancelled(true);
+
         }
     }
 
