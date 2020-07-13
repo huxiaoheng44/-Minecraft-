@@ -57,15 +57,16 @@ public class SaveAreaEvent implements Listener {
 
     @EventHandler
     public void EntityDamage(EntityDamageByEntityEvent event){
-        Player player = (Player) event.getDamager();
+
 
         //如果点击到的是放商品的ITEM_FRAME
 
-        if(event.getEntity().getType().equals(ITEM_FRAME)){
+        if(event.getEntity().getType().equals(ITEM_FRAME) && PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())){
             event.setCancelled(true);
             ItemFrame frame = (ItemFrame)event.getEntity();
             ItemStack itemStack = frame.getItem();
             String type = itemStack.getType().toString();
+            Player player = (Player) event.getDamager();
             VexViewAPI.openGui(player, InsureGui.AffirmLogue(player,type));
             TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
         }

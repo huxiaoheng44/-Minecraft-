@@ -163,6 +163,8 @@ public final class MinecraftServer extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new VexViewListener(),this);
         //安全区域监听器
         Bukkit.getPluginManager().registerEvents(new SaveAreaEvent(),this);
+        //注册FunctionGUI监听器
+        Bukkit.getPluginManager().registerEvents(new FunctionButtonEvent(),this);
 
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));

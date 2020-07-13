@@ -13,7 +13,6 @@ import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
 
 import peace.minecraftserver.VexView.MainGui;
-import peace.minecraftserver.utils.TitleApi;
 
 public class ShowCommandExecutor implements CommandExecutor {
     private final MinecraftServer plugin;
