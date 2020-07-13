@@ -16,8 +16,8 @@ mysql-port: 3306
 mysql-database: 'safetyplugin'
 mysql-username: 'root'
 
-mysql-password: '1484sbjsjyd'
-
+#mysql-password: '1484sbjsjyd'
+mysql-password: 'wzh861613130'
 #mysql-password: 'hxh19981225'
 
 
@@ -40,27 +40,27 @@ afk-delay: 300 #Seconds
 
 prefix: '&6[&bPlaytime&6]&f'
 
-message-set-playtime: '%prefix% &e%player%''s &fplaytime is now &e%hours% hours %minutes% minutes %seconds% senconds&f!'
+message-set-playtime: '%prefix% &e%player%的&f游玩时间 是 &e%hours% 小时 %minutes% 分钟 %seconds% 秒&f!'
 message-player-has-never-played: '%prefix% This player has never played on this server!'
 message-no-permission: '%prefix% You do not have access to this command!'
 message-unknown-command: '%prefix% Unknown command! Use &e/playtime help &fto get a list of commands.'
 
 message-playtime:
    - '&6==================[&bPlaytime&6]=================='
-   - '&3Your playtime: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&3你的游玩时间: &f%seconds% 秒 %minutes% 分钟 %hours% 小时'
    - '&6============================================'
 message-playtime-other:
    - '&6==================[&bPlaytime&6]=================='
-   - '&3%player%: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&3%player%: &f%seconds% 秒 %minutes% 分钟 %hours% 小时'
    - '&6============================================'
 message-help:
    - '&6==================[&bPlaytime&6]=================='
    - '&7/playtime:'
-   - '&fShows your playtime'
+   - '&f展示你的游玩时间'
    - '&7/playtime [player]:'
-   - '&fShows another player''s playtime'
+   - '&f展示其他人的游玩时间'
    - '&7/playtime top10:'
-   - '&fShows the players with the most playtime'
+   - '&f展示游玩时间前10的玩家'
    - '&7/playtime set [player] [hours] [minutes] [seconds]:'
-   - '&fChanges the playtime of the player'
+   - '&f改变玩家的游玩时间'
    - '&6============================================'

@@ -16,6 +16,8 @@ public class Timer {
 
     private int seconds;
 
+    private int lastdayseconds;
+
     private int afkTimer;
 
     private boolean afk;
@@ -30,6 +32,16 @@ public class Timer {
         this.seconds = MinecraftServer.utils.getSecondsFromDatabase(p);
         this.afkTimer = 0;
         this.afk = false;
+        this.lastdayseconds = 0;
+    }
+
+    public int getLastdayseconds() {
+        lastdayseconds = MinecraftServer.mysql.TodaydaySeconds(player.getUniqueId().toString());
+        return lastdayseconds;
+    }
+
+    public void setLastdayseconds(int lastdayseconds) {
+        this.lastdayseconds = lastdayseconds;
     }
 
     public OfflinePlayer getPlayer() {
