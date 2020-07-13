@@ -6,11 +6,19 @@ depends:
   - TitleAPI
   - VexView
 commands:
+  main:
+    description: open main
+    usage: /main <shop>|<insure>|<function>|<achieve>
   getMoney:
-    description: This is a money demo command.
-    usage: /<getMoney>
-  playtime:
+    description: Used for show money
+    usage:
+  shop:
+    description: open shop
+    usage: shop <auction>|<buy>|<lottery>
   insure:
+    description: open
+    usage: /insure <message>|<buy>|
+  playtime:
   money:
   show:
   cheat:

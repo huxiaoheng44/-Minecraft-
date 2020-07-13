@@ -68,7 +68,7 @@ public class SaveAreaEvent implements Listener {
             String type = itemStack.getType().toString();
             Player player = (Player) event.getDamager();
             VexViewAPI.openGui(player, InsureGui.AffirmLogue(player,type));
-            TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
+            //TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
         }
         else if(PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
             event.getDamager().sendMessage("你不能伤害其他其他人");
