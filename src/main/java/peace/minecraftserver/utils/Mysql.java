@@ -131,7 +131,7 @@ public class Mysql {
      */
 
     public void setGuarantee(OfflinePlayer p, String gid,int expires){
-        if (!isUserExistInGuarantee(p.getUniqueId().toString()))
+        if (!isUserExistInGuarantee(p.getUniqueId().toString(),gid))
             try {
                 PreparedStatement ps = this.connection.prepareStatement("INSERT INTO guarantee (UUID,gid,expires) VALUES (?,?,?)");
                 ps.setString(1, p.getUniqueId().toString());
@@ -168,10 +168,11 @@ public class Mysql {
         return Integer.valueOf(-1);
     }
 
-    public boolean isUserExistInGuarantee(String uuid) {
+    public boolean isUserExistInGuarantee(String uuid,String gid) {
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT * FROM guarantee WHERE UUID = ? and gid = ?");
             ps.setString(1, uuid);
+            ps.setString(2, gid);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
