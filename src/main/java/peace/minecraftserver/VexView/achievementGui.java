@@ -14,7 +14,7 @@ public class achievementGui {
     public static VexGui achievement(Player player){
         List<VexComponents> vexComponentsList = new ArrayList<>();
         //返回主界面
-        vexComponentsList.add(new VexButton(4,"返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
+        vexComponentsList.add(new VexButton("4","返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, MainGui.main(player));
         }));
         vexComponentsList.add(new VexText(35,25,Arrays.asList("人气之王"),2));
