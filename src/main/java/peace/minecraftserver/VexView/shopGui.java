@@ -21,10 +21,10 @@ public class shopGui {
         ItemStack itemStack0 = new ItemStack(Material.IRON_INGOT);//铁锭
         ItemStack itemStack1 = new ItemStack(Material.GOLD_INGOT);//金锭
         ItemStack itemStack2 = new ItemStack(Material.DIAMOND);//钻石
-        ItemStack itemStack3 = new ItemStack(Material.FISHING_ROD);//恐龙蛋
+        ItemStack itemStack3 = new ItemStack(Material.FISHING_ROD);//鱼竿
         ItemStack itemStack4 = new ItemStack(Material.COOKED_CHICKEN);//熟鸡肉
         ItemStack itemStack5 = new ItemStack(Material.COOKED_BEEF);//牛排
-        ItemStack itemStack6 = new ItemStack(Material.BED);//床
+        ItemStack itemStack6 = new ItemStack(Material.GLASS);//玻璃
         ItemStack itemStack7 = new ItemStack(Material.TORCH);//火把
         ItemStack itemStack8 = new ItemStack(Material.BOW);//弓
 
@@ -38,37 +38,37 @@ public class shopGui {
         itemStack1.setItemMeta(itemMeta1);
         inventory.setItem(1,itemStack1);
 
-        ItemMeta itemMeta2 = itemStack1.getItemMeta();
+        ItemMeta itemMeta2 = itemStack2.getItemMeta();
         itemMeta2.setDisplayName("§5钻石 售价100金币");
         itemStack2.setItemMeta(itemMeta2);
         inventory.setItem(2,itemStack2);
 
-        ItemMeta itemMeta3 = itemStack1.getItemMeta();
+        ItemMeta itemMeta3 = itemStack3.getItemMeta();
         itemMeta3.setDisplayName("§5鱼竿 售价50金币");
         itemStack3.setItemMeta(itemMeta3);
         inventory.setItem(3,itemStack3);
 
-        ItemMeta itemMeta4 = itemStack1.getItemMeta();
+        ItemMeta itemMeta4 = itemStack4.getItemMeta();
         itemMeta1.setDisplayName("§5熟鸡肉 售价6金币");
         itemStack4.setItemMeta(itemMeta4);
         inventory.setItem(4,itemStack4);
 
-        ItemMeta itemMeta5 = itemStack1.getItemMeta();
+        ItemMeta itemMeta5 = itemStack5.getItemMeta();
         itemMeta5.setDisplayName("§5牛排 售价8金币");
         itemStack5.setItemMeta(itemMeta5);
         inventory.setItem(5,itemStack5);
 
-        ItemMeta itemMeta6 = itemStack1.getItemMeta();
-        itemMeta6.setDisplayName("§5床 售价50金币");
+        ItemMeta itemMeta6 = itemStack6.getItemMeta();
+        itemMeta6.setDisplayName("§5玻璃 售价1金币");
         itemStack6.setItemMeta(itemMeta6);
         inventory.setItem(6,itemStack6);
 
-        ItemMeta itemMeta7 = itemStack1.getItemMeta();
+        ItemMeta itemMeta7 = itemStack7.getItemMeta();
         itemMeta7.setDisplayName("§5火把 售价2金币");
         itemStack7.setItemMeta(itemMeta7);
         inventory.setItem(7,itemStack7);
 
-        ItemMeta itemMeta8 = itemStack1.getItemMeta();
+        ItemMeta itemMeta8 = itemStack8.getItemMeta();
         itemMeta8.setDisplayName("§5弓 售价100金币");
         itemStack8.setItemMeta(itemMeta8);
         inventory.setItem(8,itemStack8);
@@ -76,7 +76,7 @@ public class shopGui {
 
         ItemStack itemStack49 = new ItemStack(Material.WOOD_BUTTON);
         ItemMeta itemMeta49 = itemStack49.getItemMeta();
-        itemMeta49.setDisplayName("购买");
+        itemMeta49.setDisplayName("抽奖界面");
         itemStack49.setItemMeta((itemMeta49));
         inventory.setItem(49,itemStack49);
 

@@ -88,6 +88,8 @@ public final class MinecraftServer extends JavaPlugin {
         getCommand("playtime").setExecutor((CommandExecutor)new CommandBase());
         Bukkit.getServer().getPluginManager().registerEvents((Listener)new PlayerListener(), (Plugin)this);
         Bukkit.getServer().getPluginManager().registerEvents((Listener)new InventoryListener(), (Plugin)this);
+        Bukkit.getServer().getPluginManager().registerEvents((Listener)new ShopEvent(), (Plugin)this);
+        Bukkit.getServer().getPluginManager().registerEvents((Listener)new LotteryEvent(), (Plugin)this);
         saveDefaultConfig();
         config = (YamlConfiguration)getConfig();
         prefix = config.getString("prefix").replaceAll("&", "§");
