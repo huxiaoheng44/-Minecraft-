@@ -61,6 +61,7 @@ public class SaveAreaEvent implements Listener {
     public void EntityDamage(EntityDamageByEntityEvent event) {
 
         //如果点击到的是放商品的ITEM_FRAME
+
         if (event.getDamager().getType().equals(EntityType.PLAYER)) {
             if (event.getEntity().getType().equals(ITEM_FRAME) && PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
                 event.setCancelled(true);
@@ -74,6 +75,7 @@ public class SaveAreaEvent implements Listener {
                 event.getDamager().sendMessage("你不能伤害其他其他人");
                 event.setCancelled(true);
             }
+
         }
     }
 
