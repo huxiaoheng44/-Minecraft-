@@ -42,8 +42,8 @@ public class PlayerListener implements Listener {
             //p.sendMessage(String.valueOf(MinecraftServer.prefix) + " diesem Server ist PlaytimePlus installiert! ");
 
         //黄俊杰测试内容
-        MinecraftServer.mysql.setGuarantee(e.getPlayer(),"wood",10000);
-        MinecraftServer.mysql.setGuarantee(e.getPlayer(),"diamond",50000);
+//        MinecraftServer.mysql.setGuarantee(e.getPlayer(),"wood",10000);
+//        MinecraftServer.mysql.setGuarantee(e.getPlayer(),"diamond",50000);
     }
 
     @EventHandler

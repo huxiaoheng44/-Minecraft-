@@ -6,10 +6,13 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import peace.minecraftserver.MinecraftServer;
+import peace.minecraftserver.utils.InsureUtils;
 import peace.minecraftserver.utils.Mysql;
 import peace.minecraftserver.utils.VaultUtil;
 
@@ -21,15 +24,13 @@ public class PlayerInsureListener implements Listener {
     EntityType undamageEntity;
     EntityDamageEvent.DamageCause accident_type;
     String []insures;
+    InsureUtils insureUtils=new InsureUtils();
 
     /*请求保险类型*/
     public void init(String uuid){
         if(MinecraftServer.mysql.getAllInsure(uuid)!=null) {
             insures = new String[MinecraftServer.mysql.getAllInsure(uuid).size()];
             MinecraftServer.mysql.getAllInsure(uuid).toArray(insures);
-            for (int i = 0; i < insures.length; i++) {
-                MinecraftServer.plugin.getLogger().info(insures[i]);
-            }
         }
     }
     @EventHandler
@@ -39,16 +40,21 @@ public class PlayerInsureListener implements Listener {
         init(event.getEntity().getUniqueId().toString());
         for (int i=0;i<insures.length;i++){
             String insure=insures[i];
+            if(insureUtils.is_insur_out(event.getEntity(),insure))
+                continue;
             switch (insure) {
                 case "wood":
                     event.setKeepLevel(true);
+                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "stone":
                     event.setKeepInventory(true);
+                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "iron":
                     event.setKeepInventory(true);
                     event.setKeepLevel(true);
+                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "gold":
                     MinecraftServer.plugin.getLogger().info("enter");
@@ -56,6 +62,7 @@ public class PlayerInsureListener implements Listener {
                         event.getEntity().getInventory().addItem(new ItemStack(Material.GOLD_BLOCK, 5));
                         event.setKeepInventory(true);
                         event.setKeepLevel(true);
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
 
                     break;
@@ -63,9 +70,9 @@ public class PlayerInsureListener implements Listener {
                     MinecraftServer.plugin.getLogger().info("enter");
                     if(event.getEntity().getInventory().firstEmpty()!=-1) {
                         event.getEntity().getInventory().addItem(new ItemStack(Material.DIAMOND, 10));
-
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
-                    VaultUtil.give(event.getEntity().getUniqueId(), 500);
+                    VaultUtil.give(event.getEntity().getUniqueId(), 10);
                     event.setKeepInventory(true);
                     event.setKeepLevel(true);
                     MinecraftServer.plugin.getLogger().info("reborn");
@@ -77,6 +84,7 @@ public class PlayerInsureListener implements Listener {
                         undamageEntity=event_damager.getDamager().getType();
 
                     }
+                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "accident_death":
                     MinecraftServer.plugin.getLogger().info("accident");
@@ -84,9 +92,11 @@ public class PlayerInsureListener implements Listener {
                         MinecraftServer.plugin.getLogger().info("enter_accident");
                         accident_type=event.getEntity().getLastDamageCause().getCause();
                     }
+                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
 
             }
+
         }
     }
     @EventHandler
@@ -100,6 +110,8 @@ public class PlayerInsureListener implements Listener {
         if(event.getPlayer().getInventory().firstEmpty()==-1) {
             for (int i = 0; i < insures.length; i++) {
                 String insure = insures[i];
+                if(insureUtils.is_insur_out(event.getPlayer(),insure))
+                    continue;
                 switch (insure) {
                     case "gold":
                         event.getPlayer().getWorld().dropItem(event.getRespawnLocation(), new ItemStack(Material.GOLD_BLOCK, 5));
@@ -109,6 +121,7 @@ public class PlayerInsureListener implements Listener {
                         break;
                 }
 
+                MinecraftServer.mysql.deletInsure(event.getPlayer().getUniqueId().toString(),insure);
             }
         }
 
@@ -126,5 +139,14 @@ public class PlayerInsureListener implements Listener {
             event.setDamage(100000);
         }
     }
-
+//    @EventHandler
+//    public void test(PlayerInteractEvent event){
+//        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)){
+//            event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+//        }
+//        if (event.getAction().equals(Action.LEFT_CLICK_AIR)){
+//            InsureUtils insureUtils = new InsureUtils();
+//            insureUtils.is_insur_out(event.getPlayer(),"diamond");
+//        }
+//    }
 }

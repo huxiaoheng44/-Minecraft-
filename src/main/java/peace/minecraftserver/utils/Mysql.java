@@ -77,6 +77,7 @@ public class Mysql {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("数据库错误:"+e.getSQLState());
                 ((MinecraftServer)MinecraftServer.getPlugin(MinecraftServer.class)).getServer().getConsoleSender().sendMessage("not connect to database! :"+e.toString());
             }
     }
@@ -99,6 +100,15 @@ public class Mysql {
     }
 
     public void createTable(){
+
+        update("CREATE DATABASE IF NOT EXISTS `safetyplugin`;");
+
+        update("CREATE EVENT IF NOT EXISTS `update`\n" +
+                "ON SCHEDULE\n" +
+                "EVERY '1' DAY STARTS '2019-07-09 00:00:00'\n" +
+                "DO update playtime set LastdaySeconds = Seconds;\n" +
+                "\n" );
+
         //在线时长表
         update("CREATE TABLE IF NOT EXISTS `playtime` (\n" +
                 "  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',\n" +
@@ -133,7 +143,7 @@ public class Mysql {
      */
 
     public void setGuarantee(OfflinePlayer p, String gid,int expires){
-        if (!isUserExistInGuarantee(p.getUniqueId().toString()))
+        if (!isUserExistInGuarantee(p.getUniqueId().toString(),gid))
             try {
                 PreparedStatement ps = this.connection.prepareStatement("INSERT INTO guarantee (UUID,gid,expires) VALUES (?,?,?)");
                 ps.setString(1, p.getUniqueId().toString());
@@ -170,20 +180,19 @@ public class Mysql {
         return Integer.valueOf(-1);
     }
 
-    public boolean isUserExistInGuarantee(String uuid) {
+    public boolean isUserExistInGuarantee(String uuid,String gid) {
         try {
-            PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ?");
+            PreparedStatement ps = this.connection.prepareStatement("SELECT gid FROM guarantee WHERE UUID = ? and gid=?");
             ps.setString(1, uuid);
+            ps.setString(2,gid);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                MinecraftServer.plugin.getLogger().info("true");
-            }
             return rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+    //获取用户所有保险
     public List<String> getAllInsure(String uuid){
         List<String> insures=new ArrayList<>();
         try {
@@ -197,6 +206,18 @@ public class Mysql {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+    //删除用户对应的保险
+    public void deletInsure(String uuid,String gid){
+        try {
+            PreparedStatement ps = this.connection.prepareStatement("DELETE  FROM guarantee WHERE UUID = ? and gid=?");
+            ps.setString(1, uuid);
+            ps.setString(2,gid);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+
         }
     }
     /*
