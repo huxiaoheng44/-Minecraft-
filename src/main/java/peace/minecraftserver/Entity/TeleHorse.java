@@ -1,7 +1,9 @@
 package peace.minecraftserver.Entity;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -16,6 +18,14 @@ public class TeleHorse {
     private static HashMap<UUID, Integer> teleTimesMap = new HashMap<UUID, Integer>();
     //entityUUID - PlayerUUID
     private static HashMap<UUID, UUID> playerMap = new HashMap<UUID, UUID>();
+
+    public static void spawnTelehorse(Player player,Location location){
+        World world = player.getWorld();
+        Location l = player.getLocation();
+        Entity entity = world.spawnEntity(l.add(l.getDirection()).add(0,1,0), EntityType.HORSE);
+        TeleHorse teleHorse = new TeleHorse(player,entity,location);
+        entity.setCustomName("TeleHorse");
+    }
 
     public TeleHorse(Player player, Entity entity, Location location) {
         this.entity = entity;

@@ -165,6 +165,8 @@ public final class MinecraftServer extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new SaveAreaEvent(),this);
         //保险模块监听
         Bukkit.getPluginManager().registerEvents(new PlayerInsureListener(),this);
+        //注册FunctionGUI监听器
+        Bukkit.getPluginManager().registerEvents(new FunctionButtonEvent(),this);
 
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
