@@ -25,6 +25,8 @@ commands:
     description: open function gui
     usage: /function <message>|<buy>|
   playtime:
+
   money:
   show:
   cheat:
+

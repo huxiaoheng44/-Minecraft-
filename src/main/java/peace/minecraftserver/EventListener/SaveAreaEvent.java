@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -56,18 +57,21 @@ public class SaveAreaEvent implements Listener {
         //如果点击到的是放商品的ITEM_FRAME
 
         if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
-            if (event.getEntity().getType().equals(ITEM_FRAME) && event.getDamager().getType().equals(EntityType.PLAYER)) {
-                event.setCancelled(true);
-                ItemFrame frame = (ItemFrame) event.getEntity();
-                ItemStack itemStack = frame.getItem();
-                String type = itemStack.getType().toString();
-                Player player = (Player) event.getDamager();
-                VexViewAPI.openGui(player, InsureGui.AffirmLogue(player, type));
-                TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
-            }
-            else if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
-                event.getDamager().sendMessage("你不能伤害其他其他人");
-                event.setCancelled(true);
+            try {
+                if (event.getEntity().getType().equals(ITEM_FRAME) && event.getDamager().getType().equals(EntityType.PLAYER)) {
+                    event.setCancelled(true);
+                    ItemFrame frame = (ItemFrame) event.getEntity();
+                    ItemStack itemStack = frame.getItem();
+                    String type = itemStack.getType().toString();
+                    Player player = (Player) event.getDamager();
+                    VexViewAPI.openGui(player, InsureGui.AffirmLogue(player, type));
+                    TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
+                } else if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
+                    event.getDamager().sendMessage("你不能伤害其他其他人");
+                    event.setCancelled(true);
+                }
+            }catch (Exception e){
+
             }
 
         }
@@ -109,9 +113,16 @@ public class SaveAreaEvent implements Listener {
         }catch (Exception e){
 
         }
-
-
     }
+
+    @EventHandler
+    public void SpawnEvent(CreatureSpawnEvent event) {
+        //不允许出生怪物
+        if(PeaceAreaUtil.IsPeaceArea(event.getEntity().getLocation())){
+            event.setCancelled(true);
+        }
+    }
+
 //    @EventHandler
 //    public void EntityDeath(EntityDeathEvent event){
 //        MyPlugin.plugin.getLogger().info("-------------BlockBreakEvent--------------"+event.getEntity());

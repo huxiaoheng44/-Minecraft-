@@ -27,24 +27,24 @@ public class InsureUtils {
         MinecraftServer.mysql.setGuarantee(player,gid,vilid);
     }
     //判断保险是否过期
-    public boolean is_insur_out(Player player,String gid){
+    public int is_insur_out(Player player,String gid){
         int expires=MinecraftServer.mysql.getGuarantee(player,gid);
         if(MinecraftServer.mysql.getGuarantee(player,gid)!=-1){
             if(MinecraftServer.mysql.getSeconds(player.getUniqueId().toString())>expires) {
-                player.sendMessage("保险存在且已到期");
+                //player.sendMessage("保险存在且已到期");
                 MinecraftServer.plugin.getLogger().info("保险存在且已到期");
                 MinecraftServer.mysql.deletInsure(player.getUniqueId().toString(),gid);
-                return true;
+                return 1;
             }
             else {
-                player.sendMessage("保险存在未到期");
+                //player.sendMessage("保险存在未到期");
                 MinecraftServer.plugin.getLogger().info("保险存在未到期");
-                return false;
+                return 0;
             }
         }
-        player.sendMessage("保险不存在");
+        //player.sendMessage("保险不存在");
         MinecraftServer.plugin.getLogger().info("保险不存在");
-        return true;
+        return -1;
     }
     //是否可以购买保险
     public void could_buy(Player player,double pay,String gid,int time){

@@ -34,6 +34,10 @@ public class FunctionCommand implements CommandExecutor {
                     //付费界面
                     VexViewAPI.openGui(player, FunctionGui.FunctionCharge(player));
                     return true;
+                }else if(strings[0].equalsIgnoreCase("tele")){
+                    //传送
+                    VexViewAPI.openGui(player, FunctionGui.SetLocation(player));
+                    return true;
                 }
 //                else if(strings[0].equalsIgnoreCase("remove")){
 //                    //打开商店购物界面

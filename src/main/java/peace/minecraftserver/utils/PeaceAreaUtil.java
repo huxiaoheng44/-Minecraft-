@@ -32,7 +32,7 @@ public class PeaceAreaUtil {
 //                    setDiamond(l);
 //                }
                 if(PeaceAreaUtil.IsPeaceArea(loc)){
-                    MinecraftServer.plugin.getLogger().info("设置钻石"+loc);
+                    //MinecraftServer.plugin.getLogger().info("设置钻石"+loc);
                     PeaceAreaUtil.setDiamond(loc);
                 }
             }
