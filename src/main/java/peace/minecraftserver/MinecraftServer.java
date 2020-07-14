@@ -10,6 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import peace.minecraftserver.CommendExecutor.*;
+
+import peace.minecraftserver.Entity.ShopItem;
+
 import peace.minecraftserver.EventListener.*;
 import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
@@ -88,6 +91,8 @@ public final class MinecraftServer extends JavaPlugin {
         getCommand("playtime").setExecutor((CommandExecutor)new CommandBase());
         Bukkit.getServer().getPluginManager().registerEvents((Listener)new PlayerListener(), (Plugin)this);
         Bukkit.getServer().getPluginManager().registerEvents((Listener)new InventoryListener(), (Plugin)this);
+        Bukkit.getServer().getPluginManager().registerEvents((Listener)new ShopEvent(), (Plugin)this);
+        Bukkit.getServer().getPluginManager().registerEvents((Listener)new LotteryEvent(), (Plugin)this);
         saveDefaultConfig();
         config = (YamlConfiguration)getConfig();
         prefix = config.getString("prefix").replaceAll("&", "§");
@@ -173,13 +178,26 @@ public final class MinecraftServer extends JavaPlugin {
         //跟随特效
         Bukkit.getPluginManager().registerEvents(new FollowEffectEvent(),this);
 
+
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
         this.getCommand("Cheat").setExecutor(new CheatCommandExecutor(this));
+
         this.getCommand("attack").setExecutor(new AttackCommandExecutor(this));
         this.getCommand("round").setExecutor(new RoundCommandExecutor(this));
         this.getCommand("follow").setExecutor(new FollowCommandExecutor(this));
-        this.getCommand("insure").setExecutor(new CommandInsure());
+        this.getCommand("insureshow").setExecutor(new CommandInsure());
+
+
+        this.getCommand("main").setExecutor(new MainCommand(this));
+        this.getCommand("function").setExecutor(new FunctionCommand(this));
+        this.getCommand("insure").setExecutor(new InsureCommand(this));
+        this.getCommand("shop").setExecutor(new ShopCommand(this));
+        this.getCommand("achievement").setExecutor(new AchievementCommand(this));
+
+        ShopItem.init();
+
+
         //getLogger().info("----------第一个plugin启动------------");
 //        if (getServer().getPluginManager().getPlugin("Vault") == null) {
 //            getLogger().info("----------没有发现Vault，插件无法继续使用！------------");

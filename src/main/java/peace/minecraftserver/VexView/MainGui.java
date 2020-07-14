@@ -16,9 +16,8 @@ import java.util.List;
 public class MainGui {
     public static VexGui main(Player player){
         List<VexComponents> vexComponentsList = new ArrayList<>();
-
-        vexComponentsList.add(new VexButton("shopmain","商店","[local]button.png","[local]button_.png",-1,40,80,20, p -> {
-            shopGui.PlayershopGui(player);
+        vexComponentsList.add(new VexButton("businessmain","交易系统","[local]button.png","[local]button_.png",-1,40,80,20, p -> {
+            VexViewAPI.openGui(player, BusinessGui.BusinessMainGui(player));
         }));
         vexComponentsList.add(new VexButton("insuremain","保险系统","[local]button.png","[local]button_.png",-1,80,80,20,player1 -> {
             //直接打开保险信息界面
@@ -31,6 +30,12 @@ public class MainGui {
         vexComponentsList.add(new VexButton("achievemain","成就系统","[local]button.png","[local]button_.png",-1,160,80,20,player1 -> {
             //直接打开辅助功能信息界面
             VexViewAPI.openGui(player, achievementGui.achievement(player));
+
+        }));
+
+        vexComponentsList.add(new VexButton("special","特效系统","[local]button.png","[local]button_.png",-1,200,80,20,player1 -> {
+            //直接打开辅助功能信息界面
+            VexViewAPI.openGui(player, SpecialGui.specialgui(player));
 
         }));
 

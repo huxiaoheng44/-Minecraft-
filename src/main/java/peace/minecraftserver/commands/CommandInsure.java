@@ -14,7 +14,7 @@ public class CommandInsure implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         MinecraftServer.plugin.getLogger().info(label + "======");
         Player player = (Player) sender;
-        if (command.getName().equalsIgnoreCase("insure")) {
+        if (command.getName().equalsIgnoreCase("insureshow")) {
             sender.sendMessage("========保险列表========");
             for (int i = 0; i < insures.length; i++) {
                 if (insureUtils.is_insur_out(player, insures[i])==1) {
