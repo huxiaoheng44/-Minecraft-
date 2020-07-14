@@ -3,9 +3,16 @@ package peace.minecraftserver.VexView;
 import lk.vexview.api.VexViewAPI;
 import lk.vexview.gui.VexGui;
 import lk.vexview.gui.components.*;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import peace.minecraftserver.Entity.ShopItem;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.utils.InsureUtils;
+
+import org.bukkit.inventory.ItemStack;
+import peace.minecraftserver.utils.VaultUtil;
+
 
 import java.util.*;
 
@@ -107,19 +114,33 @@ public class InsureGui {
     }
 
 
-    public static VexGui AffirmLogue(Player player, String item){
+    public static VexGui AffirmLogue(Player player, Material material){
         List<VexComponents> vexComponentsList = new ArrayList<>();
 
         //添加中间text信息
         //使用该句子List<String> message = new ArrayList<String>();
         List<String> messages = new ArrayList<String>();
+
+        messages.add(ShopItem.getName(material));
+        messages.add("价格"+ShopItem.getPrice(material));
         messages.add("确认要购买吗");
-        messages.add(item);
-        vexComponentsList.add(new VexText(30,70,messages,1));
-        vexComponentsList.add(new VexImage("[local]gui.png",-1,-1,100,100));
-        vexComponentsList.add(new VexButton("affirm","确认","[local]button.png","[local]button_.png",20,50,30,15));
-        vexComponentsList.add(new VexButton("cancel","取消","[local]button.png","[local]button_.png",70,50,30,15));
-        return new VexGui("[local]gui.png",-1,-1,100,100,vexComponentsList);
+        vexComponentsList.add(new VexText(20,10,messages,1));
+        vexComponentsList.add(new VexImage("[local]gui.png",-1,-1,90,90));
+        vexComponentsList.add(new VexButton("affirm","确认","[local]button.png","[local]button_.png",10,50,30,15,player1 -> {
+            if(VaultUtil.pay(player.getUniqueId(),100)){
+                ItemStack itemStack = new ItemStack(255);//把255改成相应物品
+                player.getInventory().addItem(itemStack);
+                //加声音
+                player.sendMessage("您本次消费"+100);
+                player.sendMessage("您的余额还有："+VaultUtil.seemoney(player.getUniqueId()));
+            }else{
+                player.sendMessage(("余额不足"));
+            }
+        }));
+        vexComponentsList.add(new VexButton("cancel","取消","[local]button.png","[local]button_.png",55,50,30,15,player1 -> {
+            player.closeInventory();
+        }));
+        return new VexGui("[local]gui.png",-1,-1,90,90,vexComponentsList);
     }
 
 
