@@ -10,12 +10,13 @@ import java.util.UUID;
 public class ShopItem {
     private static HashMap<Material, Integer> priceMap = new HashMap<Material, Integer>();
     private static HashMap<Material, String> nameMap = new HashMap<Material, String>();
-    private static HashMap<String, Material> name2Material = new HashMap<String, Material>();
+
+    private static HashMap<String, Material> nameMaterial = new HashMap<String, Material>();
+
     public static void init(){
 
 
         nameMap.put(Material.IRON_INGOT,"铁锭");
-        name2Material.put("铁锭",Material.IRON_INGOT);
         priceMap.put(Material.IRON_INGOT,10);
 
         nameMap.put(Material.GOLD_INGOT,"金锭");
@@ -51,6 +52,8 @@ public class ShopItem {
 
         nameMap.put(Material.STONE,"石头");
         priceMap.put(Material.STONE,1);
+
+
 
 //        nameMap.put("STONE","石头");
 //        priceMap.put("STONE",1);

@@ -15,37 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class shopGui {
-    public static  String PlayershopGui = "§2商城";
-
-    public static Inventory setItem(Inventory inventory,Material material){
-        ItemStack itemStack = new ItemStack(material);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(ShopItem.getName(material));
-        List<String> lores = new ArrayList<String>();
-        int price = ShopItem.getPrice(material);
-        //添加物品的具体信息
-        lores.add("§5价格:"+price);  //设置价格
-        itemMeta.setLore(lores); //add the lores of course
-        itemStack.setItemMeta(itemMeta); //give the item the new itemmeta
-        inventory.addItem(itemStack);
-        return inventory;
-    }
-
-    public static Inventory playerSetItem(Inventory inventory,ItemStack itemStack){
-        Material material = itemStack.getType();
-        int price = ShopItem.getPrice(material);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(ShopItem.getName(material));
-        List<String> lores = new ArrayList<String>();
-        //添加物品的具体信息
-        lores.add("§5价格:"+price);  //设置价格
-        itemMeta.setLore(lores); //add the lores of course
-        itemStack.setItemMeta(itemMeta); //give the item the new itemmeta
-        inventory.addItem(itemStack);
-        return inventory;
-    }
-    public static void PlayershopGui(Player player){
-          Inventory inventory = Bukkit.createInventory(null,54,PlayershopGui);
+    public static String PlayershopGui = "§2商城";
+    public static void PlayershopGui(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 54, PlayershopGui);
 //        ItemStack itemStack0 = new ItemStack(Material.IRON_INGOT);//铁锭
 //        ItemStack itemStack1 = new ItemStack(Material.GOLD_INGOT);//金锭
 //        ItemStack itemStack2 = new ItemStack(Material.DIAMOND);//钻石
@@ -56,21 +28,23 @@ public class shopGui {
 //        ItemStack itemStack7 = new ItemStack(Material.TORCH);//火把
 //        ItemStack itemStack8 = new ItemStack(Material.BOW);//弓
 
-        shopGui.setItem(inventory,Material.IRON_INGOT);
-        shopGui.setItem(inventory,Material.GOLD_INGOT);
-        shopGui.setItem(inventory,Material.DIAMOND);
-        shopGui.setItem(inventory,Material.FISHING_ROD);
-        shopGui.setItem(inventory,Material.COOKED_CHICKEN);
-        shopGui.setItem(inventory,Material.COOKED_BEEF);
-        shopGui.setItem(inventory,Material.GLASS);
-        shopGui.setItem(inventory,Material.TORCH);
-        shopGui.setItem(inventory,Material.BOW);
+        shopGui.setItem(inventory, Material.IRON_INGOT);
+        shopGui.setItem(inventory, Material.GOLD_INGOT);
+        shopGui.setItem(inventory, Material.DIAMOND);
+        shopGui.setItem(inventory, Material.FISHING_ROD);
+        shopGui.setItem(inventory, Material.COOKED_CHICKEN);
+        shopGui.setItem(inventory, Material.COOKED_BEEF);
+        shopGui.setItem(inventory, Material.GLASS);
+        shopGui.setItem(inventory, Material.TORCH);
+        shopGui.setItem(inventory, Material.BOW);
+
+        player.openInventory(inventory);
 
 //        ItemMeta itemMeta0 = itemStack0.getItemMeta();
 //        itemMeta0.setDisplayName("铁锭 售价10金币");
 //        itemStack0.setItemMeta(itemMeta0);
 //        inventory.setItem(0,itemStack0);
-//
+
 //        ItemMeta itemMeta1 = itemStack1.getItemMeta();
 //        itemMeta1.setDisplayName("§5金锭 售价30金币");
 //        itemStack1.setItemMeta(itemMeta1);
@@ -112,11 +86,41 @@ public class shopGui {
 //        inventory.setItem(8,itemStack8);
 //        player.openInventory(inventory);
 
-        ItemStack itemStack49 = new ItemStack(Material.WOOD_BUTTON);
-        ItemMeta itemMeta49 = itemStack49.getItemMeta();
-        itemMeta49.setDisplayName("抽奖界面");
-        itemStack49.setItemMeta((itemMeta49));
-        inventory.setItem(49,itemStack49);
+//        ItemStack itemStack49 = new ItemStack(Material.WOOD_BUTTON);
+//        ItemMeta itemMeta49 = itemStack49.getItemMeta();
+//        itemMeta49.setDisplayName("抽奖界面");
+//        itemStack49.setItemMeta((itemMeta49));
+//        inventory.setItem(49,itemStack49);
 
     }
+
+    public static Inventory setItem(Inventory inventory, Material material) {
+        ItemStack itemStack = new ItemStack(material);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ShopItem.getName(material));
+        List<String> lores = new ArrayList<String>();
+        int price = ShopItem.getPrice(material);
+        //添加物品的具体信息
+        lores.add("§5价格:" + price);  //设置价格
+        itemMeta.setLore(lores); //add the lores of course
+        itemStack.setItemMeta(itemMeta); //give the item the new itemmeta
+        inventory.addItem(itemStack);
+        return inventory;
+    }
+
+    public static Inventory playerSetItem(Inventory inventory, ItemStack itemStack) {
+        Material material = itemStack.getType();
+        int price = ShopItem.getPrice(material);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ShopItem.getName(material));
+        List<String> lores = new ArrayList<String>();
+        //添加物品的具体信息
+        lores.add("§5价格:" + price);  //设置价格
+        itemMeta.setLore(lores); //add the lores of course
+        itemStack.setItemMeta(itemMeta); //give the item the new itemmeta
+        inventory.addItem(itemStack);
+        return inventory;
+    }
+
+
 }

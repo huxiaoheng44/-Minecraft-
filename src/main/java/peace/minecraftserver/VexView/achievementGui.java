@@ -22,7 +22,7 @@ public class achievementGui {
             VexViewAPI.openGui(player, MainGui.main(player));
         }));
 
-        vexComponentsList.add(new VexButton(40,"显示排名","[local]button.png","[local]button_.png",40,10,40,13,player1 -> {
+        vexComponentsList.add(new VexButton("40","显示排名","[local]button.png","[local]button_.png",40,10,40,13,player1 -> {
             player.performCommand("playtime top10");
         }));
 

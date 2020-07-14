@@ -21,15 +21,12 @@ public class ShopEvent implements Listener {
     public void ShopGuiClick(InventoryClickEvent event){
         Inventory inventory =event.getInventory();
         String title = inventory.getTitle();
-        if(title.equalsIgnoreCase(shopGui.PlayershopGui)){
+        if(title.equalsIgnoreCase(shopGui.PlayershopGui) || title.equalsIgnoreCase("地摊")){
             HumanEntity whoClicked = event.getWhoClicked();
             Player player = (Player)whoClicked;
-            if(event.getRawSlot()==49){
+            if(event.getRawSlot()<=8){
                 event.setCancelled(true);
-                lotteryGui.PlayerLotteryGui(player);//显示抽奖界面
-            }else if(event.getRawSlot()<=8){
-                event.setCancelled(true);
-                if(VaultUtil.pay(player.getUniqueId(),pri[event.getRawSlot()])==true){
+                if(VaultUtil.pay(player.getUniqueId(),pri[event.getRawSlot()])){
                     ItemStack itemStack = new ItemStack(mark[event.getRawSlot()]);
                     player.getInventory().addItem(itemStack);
                     //加声音

@@ -20,14 +20,14 @@ public class FunctionGui {
         vexComponentsList.add(new VexButton("back","返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, MainGui.main(player));
         }));
-        vexComponentsList.add(new VexButton("payfunction","付费功能","[local]button.png","[local]button_.png",-1,80,120,30, p -> {
+        vexComponentsList.add(new VexButton("payfunction","§5付费功能","[local]button.png","[local]button_.png",-1,80,120,30, p -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionCharge(player));
         }));
-        vexComponentsList.add(new VexButton("freefunction","免费功能","[local]button.png","[local]button_.png",-1,140,120,30,player1 -> {
+        vexComponentsList.add(new VexButton("freefunction","§7免费功能","[local]button.png","[local]button_.png",-1,140,120,30,player1 -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionFree(player));
         }));
         //标题
-        vexComponentsList.add(new VexText(75,15, Arrays.asList("辅助功能"),3));
+        vexComponentsList.add(new VexText(75,15, Arrays.asList("§1辅助功能"),3));
         return new VexGui("[local]gui.png",-1,-1,250,230,vexComponentsList);
     }
 

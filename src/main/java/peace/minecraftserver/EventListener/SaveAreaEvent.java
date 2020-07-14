@@ -87,6 +87,8 @@ public class SaveAreaEvent implements Listener {
             //如果该玩家有开店的权限的话可以放置箱子
             if(player.hasPermission("setShopChest") && event.getBlockPlaced().getType()==Material.CHEST){
                 event.setBuild(true);
+                Chest b = (Chest) event.getBlockPlaced();
+                b.setCustomName("地摊");
                 ShopChest.setShopChest(event.getBlockPlaced().getLocation(),player);
             }
             else {
