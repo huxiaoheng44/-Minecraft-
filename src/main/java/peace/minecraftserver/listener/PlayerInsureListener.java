@@ -40,7 +40,7 @@ public class PlayerInsureListener implements Listener {
         init(event.getEntity().getUniqueId().toString());
         for (int i=0;i<insures.length;i++){
             String insure=insures[i];
-            if(insureUtils.is_insur_out(event.getEntity(),insure))
+            if(insureUtils.is_insur_out(event.getEntity(),insure)!=0)
                 continue;
             switch (insure) {
                 case "wood":
@@ -57,7 +57,6 @@ public class PlayerInsureListener implements Listener {
                     MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "gold":
-                    MinecraftServer.plugin.getLogger().info("enter");
                     if(event.getEntity().getInventory().firstEmpty()!=-1){
                         event.getEntity().getInventory().addItem(new ItemStack(Material.GOLD_BLOCK, 5));
                         event.setKeepInventory(true);
@@ -75,7 +74,6 @@ public class PlayerInsureListener implements Listener {
                     VaultUtil.give(event.getEntity().getUniqueId(), 10);
                     event.setKeepInventory(true);
                     event.setKeepLevel(true);
-                    MinecraftServer.plugin.getLogger().info("reborn");
                     break;
                 case "monster_kill":
 
@@ -110,7 +108,7 @@ public class PlayerInsureListener implements Listener {
         if(event.getPlayer().getInventory().firstEmpty()==-1) {
             for (int i = 0; i < insures.length; i++) {
                 String insure = insures[i];
-                if(insureUtils.is_insur_out(event.getPlayer(),insure))
+                if(insureUtils.is_insur_out(event.getPlayer(),insure)!=0)
                     continue;
                 switch (insure) {
                     case "gold":

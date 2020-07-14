@@ -11,6 +11,9 @@ commands:
     usage: /<getMoney>
   playtime:
   insure:
+    description: show player insure state
+    usage:
   money:
   show:
   cheat:
+
