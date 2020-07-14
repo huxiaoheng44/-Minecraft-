@@ -12,8 +12,14 @@ commands:
   playtime:
   insure:
     description: show player insure state
-    usage:
+    usage: /<insure>
   money:
   show:
   cheat:
+  #攻击特效指令
+  attack:
+  #落地特效
+  round:
+  #跟随特效
+  follow:
 

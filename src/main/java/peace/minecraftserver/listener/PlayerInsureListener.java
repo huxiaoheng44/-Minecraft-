@@ -137,14 +137,13 @@ public class PlayerInsureListener implements Listener {
             event.setDamage(100000);
         }
     }
-//    @EventHandler
-//    public void test(PlayerInteractEvent event){
-//        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)){
-//            event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
-//        }
-//        if (event.getAction().equals(Action.LEFT_CLICK_AIR)){
-//            InsureUtils insureUtils = new InsureUtils();
-//            insureUtils.is_insur_out(event.getPlayer(),"diamond");
-//        }
-//    }
+    @EventHandler
+    public void test(PlayerInteractEvent event){
+        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)){
+            event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+        }
+        if (event.getAction().equals(Action.LEFT_CLICK_AIR)){
+           VaultUtil.give(event.getPlayer().getUniqueId(),200);
+        }
+    }
 }
