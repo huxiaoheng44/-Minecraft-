@@ -9,9 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import peace.minecraftserver.CommendExecutor.CheatCommandExecutor;
-import peace.minecraftserver.CommendExecutor.EconomyCommandExecutor;
-import peace.minecraftserver.CommendExecutor.ShowCommandExecutor;
+import peace.minecraftserver.CommendExecutor.*;
 import peace.minecraftserver.EventListener.*;
 import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
@@ -170,9 +168,15 @@ public final class MinecraftServer extends JavaPlugin {
         //注册FunctionGUI监听器
         Bukkit.getPluginManager().registerEvents(new FunctionButtonEvent(),this);
 
+
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));
         this.getCommand("show").setExecutor(new ShowCommandExecutor(this));
         this.getCommand("Cheat").setExecutor(new CheatCommandExecutor(this));
+        this.getCommand("main").setExecutor(new MainCommand(this));
+        this.getCommand("function").setExecutor(new FunctionCommand(this));
+        this.getCommand("insure").setExecutor(new InsureCommand(this));
+        this.getCommand("shop").setExecutor(new ShopCommand(this));
+        this.getCommand("achievement").setExecutor(new AchievementCommand(this));
         //getLogger().info("----------第一个plugin启动------------");
 //        if (getServer().getPluginManager().getPlugin("Vault") == null) {
 //            getLogger().info("----------没有发现Vault，插件无法继续使用！------------");

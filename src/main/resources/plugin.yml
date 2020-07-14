@@ -14,10 +14,16 @@ commands:
     usage:
   shop:
     description: open shop
-    usage: shop <auction>|<buy>|<lottery>
+    usage: /shop <auction>|<buy>|<lottery>
   insure:
-    description: open
+    description: open insure gui
     usage: /insure <message>|<buy>|
+  achievement:
+    description: open achievement gui
+    usage: /achieve <message>|<buy>|
+  function:
+    description: open function gui
+    usage: /function <message>|<buy>|
   playtime:
   money:
   show:
