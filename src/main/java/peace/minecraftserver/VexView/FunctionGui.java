@@ -58,7 +58,7 @@ public class FunctionGui {
     public static VexGui FunctionFree(Player player){
         List<VexComponents> vexComponentsList = new ArrayList<>();
         //返回辅助功能主界面
-        vexComponentsList.add(new VexButton(4,"返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
+        vexComponentsList.add(new VexButton("4","返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionMain(player));
         }));
 

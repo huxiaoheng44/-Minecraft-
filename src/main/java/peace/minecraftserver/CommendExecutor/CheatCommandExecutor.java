@@ -20,6 +20,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.permissions.PermissionAttachment;
 import peace.minecraftserver.Entity.TeleHorse;
 import peace.minecraftserver.MinecraftServer;
+import peace.minecraftserver.utils.PeaceAreaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +128,10 @@ public class CheatCommandExecutor implements CommandExecutor {
                 return true;
             }
         }else {
+            if(strings[0].equalsIgnoreCase("setArea") ){
+                PeaceAreaUtil.setArea();
+                commandSender.sendMessage("已经设置边界");
+            }
             commandSender.sendMessage("You must be a player!");
             return false;
         }
