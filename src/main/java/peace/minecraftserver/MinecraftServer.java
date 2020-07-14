@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import peace.minecraftserver.CommendExecutor.*;
+import peace.minecraftserver.Entity.ShopItem;
 import peace.minecraftserver.EventListener.*;
 import peace.minecraftserver.command.TestCommand;
 import peace.minecraftserver.commands.CommandBase;
@@ -179,6 +180,8 @@ public final class MinecraftServer extends JavaPlugin {
         this.getCommand("insure").setExecutor(new InsureCommand(this));
         this.getCommand("shop").setExecutor(new ShopCommand(this));
         this.getCommand("achievement").setExecutor(new AchievementCommand(this));
+
+        ShopItem.init();
 
         //getLogger().info("----------第一个plugin启动------------");
 //        if (getServer().getPluginManager().getPlugin("Vault") == null) {
