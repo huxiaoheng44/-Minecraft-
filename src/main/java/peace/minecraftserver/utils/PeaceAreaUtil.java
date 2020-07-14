@@ -8,7 +8,7 @@ public class PeaceAreaUtil {
     //区域中心点坐标
     public static Location peaceAreaLocation = null;
     //距离区域多少范围为安全区域
-    public static int domain = 70;
+    public static int domain = 50;
     public static boolean IsPeaceArea(Location location){
         peaceAreaLocation = new Location(location.getWorld(),0,0,0);
         //peaceAreaLocation = location.getWorld().getSpawnLocation();

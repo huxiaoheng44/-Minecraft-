@@ -116,7 +116,6 @@ public class InsureGui {
 
     public static VexGui AffirmLogue(Player player, Material material){
         List<VexComponents> vexComponentsList = new ArrayList<>();
-
         //添加中间text信息
         //使用该句子List<String> message = new ArrayList<String>();
         List<String> messages = new ArrayList<String>();

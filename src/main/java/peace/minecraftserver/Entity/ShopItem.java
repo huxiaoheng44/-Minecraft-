@@ -2,6 +2,7 @@ package peace.minecraftserver.Entity;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -9,9 +10,12 @@ import java.util.UUID;
 public class ShopItem {
     private static HashMap<Material, Integer> priceMap = new HashMap<Material, Integer>();
     private static HashMap<Material, String> nameMap = new HashMap<Material, String>();
+    private static HashMap<String, Material> name2Material = new HashMap<String, Material>();
     public static void init(){
 
+
         nameMap.put(Material.IRON_INGOT,"铁锭");
+        name2Material.put("铁锭",Material.IRON_INGOT);
         priceMap.put(Material.IRON_INGOT,10);
 
         nameMap.put(Material.GOLD_INGOT,"金锭");

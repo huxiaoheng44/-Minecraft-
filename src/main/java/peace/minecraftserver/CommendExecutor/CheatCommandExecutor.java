@@ -131,9 +131,10 @@ public class CheatCommandExecutor implements CommandExecutor {
             if(strings[0].equalsIgnoreCase("setArea") ){
                 PeaceAreaUtil.setArea();
                 commandSender.sendMessage("已经设置边界");
+            }else {
+                commandSender.sendMessage("You must be a player!");
+                return false;
             }
-            commandSender.sendMessage("You must be a player!");
-            return false;
         }
         return false;
     }

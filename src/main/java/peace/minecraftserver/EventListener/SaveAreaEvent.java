@@ -63,8 +63,11 @@ public class SaveAreaEvent implements Listener {
                     ItemFrame frame = (ItemFrame) event.getEntity();
                     ItemStack itemStack = frame.getItem();
                     Player player = (Player) event.getDamager();
+                    //frame.setItem();
+                    player.sendMessage("§6查看商品");
                     VexViewAPI.openGui(player, InsureGui.AffirmLogue(player, itemStack.getType()));
-                    TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
+                   // player.sendMessage("§6查看商品");
+                    //TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
                 } else if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
                     event.getDamager().sendMessage("你不能伤害其他其他人");
                     event.setCancelled(true);
@@ -107,7 +110,7 @@ public class SaveAreaEvent implements Listener {
                     player.sendMessage("你是店主");
                 }else{
                     player.sendMessage("你是买家");
-
+                    //这里写具体怎么买东西
                 }
             }
         }catch (Exception e){
