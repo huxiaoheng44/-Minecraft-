@@ -30,7 +30,7 @@ public class BusinessGui {
             lotteryGui.PlayerLotteryGui(player);
         }));
 
-        vexComponentsList.add(new VexButton("shopPermission","§7摆摊","[local]button.png","[local]button_.png",-1,160,120,30,player1 -> {
+        vexComponentsList.add(new VexButton("shopPermission","§7摆摊:§3100金币","[local]button.png","[local]button_.png",-1,160,120,30,player1 -> {
             //获取摆摊机会
             PermissionAttachment attachment = player.addAttachment(MinecraftServer.plugin);
             attachment.setPermission("setShopChest",true);
