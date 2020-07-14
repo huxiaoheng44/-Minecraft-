@@ -24,10 +24,7 @@ public class ShopEvent implements Listener {
         if(title.equalsIgnoreCase(shopGui.PlayershopGui)){
             HumanEntity whoClicked = event.getWhoClicked();
             Player player = (Player)whoClicked;
-            if(event.getRawSlot()==49){
-                event.setCancelled(true);
-                lotteryGui.PlayerLotteryGui(player);//显示抽奖界面
-            }else if(event.getRawSlot()<=8){
+            if(event.getRawSlot()<=8){
                 event.setCancelled(true);
                 if(VaultUtil.pay(player.getUniqueId(),pri[event.getRawSlot()])==true){
                     ItemStack itemStack = new ItemStack(mark[event.getRawSlot()]);
