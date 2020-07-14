@@ -47,16 +47,13 @@ public class FunctionButtonEvent implements Listener {
         }
         //属性强化
         else if(id.equalsIgnoreCase("buyAttr")){
-            VaultUtil.pay(player.getUniqueId(),100);
+            VaultUtil.pay(player.getUniqueId(),20);
             PermissionAttachment attachment = player.addAttachment(MinecraftServer.plugin,1200);
             attachment.setPermission("fast",true);
             MinecraftServer.plugin.getLogger().info(player.getName()+"获得100点经验");
             //TitleAPI.sendTitle();
             player.sendMessage("金币-100");
-
-            float exp = player.getExp();
-            exp += 100;
-            player.setExp(exp);
+            player.setExp(1);
 
         }
         //获取坐标

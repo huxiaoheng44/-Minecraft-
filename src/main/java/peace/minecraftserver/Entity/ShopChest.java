@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
+import peace.minecraftserver.MinecraftServer;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.HashMap;
@@ -15,13 +16,13 @@ import java.util.UUID;
 public class ShopChest {
     //private Chest chest;
     private static HashMap<Location,Boolean> chestMap = new HashMap<Location, Boolean>();
-    private static HashMap<Location,UUID> cheat2Player = new HashMap<>();
+    private static HashMap<Location,UUID> chest2Player = new HashMap<>();
 
     //设置该区域的箱子是地摊
     public static void setShopChest(Location location, Player player){
         if(location.getBlock().getType()== Material.CHEST){
             chestMap.put(location,true);
-            cheat2Player.put(location,player.getUniqueId());
+            chest2Player.put(location,player.getUniqueId());
 //            TagDirection td = new TagDirection(0,180,0,true,false);
 //            VexImageTag vit2 = new VexImageTag("成就",location.getBlockX(),location.getBlockY()+1,location.getBlockZ(),"[local]gonggao.png",2,2,1,1,td);
 //            VexViewAPI.addWorldTag(player.getWorld(),vit2);
@@ -29,11 +30,14 @@ public class ShopChest {
         }
     }
     public static boolean isOwner(Location location,Player player){
-        if(cheat2Player.get(location)==player.getUniqueId()){
+        if(chest2Player.get(location)==player.getUniqueId()){
             return true;
         }else{
             return false;
         }
+    }
+    public static Player getOwner(Location location){
+        return MinecraftServer.plugin.getServer().getPlayer(chest2Player.get(location));
     }
 
 }

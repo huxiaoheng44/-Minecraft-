@@ -2,6 +2,7 @@ package peace.minecraftserver.EventListener;
 
 
 import lk.vexview.api.VexViewAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
@@ -16,12 +17,15 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import peace.minecraftserver.Entity.ShopChest;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
 import peace.minecraftserver.utils.PeaceAreaUtil;
 import peace.minecraftserver.utils.TitleApi;
+
+import static org.bukkit.entity.EntityType.HORSE;
 import static org.bukkit.entity.EntityType.ITEM_FRAME;
 
 
@@ -87,8 +91,6 @@ public class SaveAreaEvent implements Listener {
             //如果该玩家有开店的权限的话可以放置箱子
             if(player.hasPermission("setShopChest") && event.getBlockPlaced().getType()==Material.CHEST){
                 event.setBuild(true);
-                Chest b = (Chest) event.getBlockPlaced();
-                b.setCustomName("地摊");
                 ShopChest.setShopChest(event.getBlockPlaced().getLocation(),player);
             }
             else {
@@ -112,6 +114,10 @@ public class SaveAreaEvent implements Listener {
                     player.sendMessage("你是店主");
                 }else{
                     player.sendMessage("你是买家");
+                    Inventory inventory = Bukkit.createInventory(null, 54, "地摊");
+                    Chest chest = (Chest)block;
+                    Inventory chest_inventory = chest.getInventory();
+                    inventory.addItem(chest_inventory.getContents());
                     //这里写具体怎么买东西
                 }
             }
@@ -123,7 +129,7 @@ public class SaveAreaEvent implements Listener {
     @EventHandler
     public void SpawnEvent(CreatureSpawnEvent event) {
         //不允许出生怪物
-        if(PeaceAreaUtil.IsPeaceArea(event.getEntity().getLocation())){
+        if(PeaceAreaUtil.IsPeaceArea(event.getEntity().getLocation()) && event.getEntity().getType()!=HORSE){
             event.setCancelled(true);
         }
     }

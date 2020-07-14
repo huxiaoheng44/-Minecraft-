@@ -48,7 +48,7 @@ public class FunctionGui {
         }));
 
         //vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
-        vexComponentsList.add(new VexText(290,70,Arrays.asList("§6经验购买","获得100点经验","价格：100金币"),1));
+        vexComponentsList.add(new VexText(290,70,Arrays.asList("§6经验购买","一次升级","价格：20金币"),1));
         vexComponentsList.add(new VexButton("buyAttr","经验购买","[local]button.png","[local]button_.png",290,200,80,30));
         //标题
         vexComponentsList.add(new VexText(140,15,Arrays.asList("付费功能"),3));
