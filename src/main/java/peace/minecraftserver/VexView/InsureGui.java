@@ -125,12 +125,12 @@ public class InsureGui {
         List<String> messages = new ArrayList<String>();
 
         messages.add(ShopItem.getName(material));
-        messages.add("价格"+ShopItem.getPrice(material)/2);
+        messages.add("价格"+(ShopItem.getPrice(material)/2+1));
         messages.add("确认要购买吗");
         vexComponentsList.add(new VexText(20,10,messages,1));
         vexComponentsList.add(new VexImage("[local]gui.png",-1,-1,90,90));
         vexComponentsList.add(new VexButton("affirm","确认","[local]button.png","[local]button_.png",10,50,30,15,player1 -> {
-            if(VaultUtil.pay(player.getUniqueId(),ShopItem.getPrice(material)/2)){
+            if(VaultUtil.pay(player.getUniqueId(),ShopItem.getPrice(material)/2+1)){
                 ItemStack itemStack = new ItemStack(material);
                 player.getInventory().addItem(itemStack);
                 //加声音

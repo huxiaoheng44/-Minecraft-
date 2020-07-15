@@ -37,6 +37,12 @@ public class shopGui {
         shopGui.setItem(inventory, Material.GLASS);
         shopGui.setItem(inventory, Material.TORCH);
         shopGui.setItem(inventory, Material.BOW);
+        shopGui.setItem(inventory, Material.ARROW);
+        shopGui.setItem(inventory, Material.DIAMOND_AXE);
+        shopGui.setItem(inventory, Material.DIAMOND_SWORD);
+        shopGui.setItem(inventory, Material.DIAMOND_HOE);
+        shopGui.setItem(inventory, Material.DIAMOND_SPADE);
+        shopGui.setItem(inventory, Material.DIAMOND_PICKAXE);
 
         player.openInventory(inventory);
 
