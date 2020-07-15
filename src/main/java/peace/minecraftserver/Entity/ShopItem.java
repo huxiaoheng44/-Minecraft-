@@ -49,8 +49,20 @@ public class ShopItem {
         nameMap.put(Material.STONE,"石头");
         priceMap.put(Material.STONE,1);
 
+        nameMap.put(Material.DIAMOND_AXE,"钻石斧");
+        priceMap.put(Material.DIAMOND,500);
 
+        nameMap.put(Material.DIAMOND_SWORD,"钻石剑");
+        priceMap.put(Material.DIAMOND,500);
 
+        nameMap.put(Material.DIAMOND_HOE,"钻石锄");
+        priceMap.put(Material.DIAMOND,500);
+
+        nameMap.put(Material.DIAMOND_SPADE,"钻石铲");
+        priceMap.put(Material.DIAMOND,500);
+
+        nameMap.put(Material.DIAMOND_PICKAXE,"钻石镐");
+        priceMap.put(Material.DIAMOND,500);
 //        nameMap.put("STONE","石头");
 //        priceMap.put("STONE",1);
 //

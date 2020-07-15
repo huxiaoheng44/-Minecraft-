@@ -36,33 +36,31 @@ autosave-interval: 1200
 afk: false
 afk-delay: 300 #Seconds
 
-#Messages
+#信息
 
-prefix: '&6[&bPlaytime&6]&f'
-
-message-set-playtime: '%prefix% &e%player%''s &fplaytime is now &e%hours% hours %minutes% minutes %seconds% senconds&f!'
-message-player-has-never-played: '%prefix% This player has never played on this server!'
-message-no-permission: '%prefix% You do not have access to this command!'
-message-unknown-command: '%prefix% Unknown command! Use &e/playtime help &fto get a list of commands.'
-
+prefix: '&6[&b游玩时间&6]&f'
+message-set-playtime: '%prefix% &e%player%'' &f现在的游玩时间是 &e%hours% 小时 %minutes% 分钟 %seconds% 秒&f!'
+message-player-has-never-played: '%prefix% 此玩家从未进入过游戏!'
+message-no-permission: '%prefix% 你并没有权限使用这个指令!'
+message-unknown-command: '%prefix% 未知的指令! 使用 &e/playtime help &f来得到帮助.'
 message-playtime:
-   - '&6==================[&bPlaytime&6]=================='
-   - '&3Your playtime: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&6==================[&b游玩时间&6]=================='
+   - '&3累计在线时间: &f %hours% 小时 %minutes% 分钟 %seconds% 秒'
    - '&6============================================'
 message-playtime-other:
-   - '&6==================[&bPlaytime&6]=================='
-   - '&3%player%: &f%seconds% Seconds %minutes% Minutes %hours% Hours'
+   - '&6==================[&b游玩时间&6]=================='
+   - '&3%player%的累计在线时间:  &f%hours% 小时 %minutes% 分钟 %seconds% 秒 '
    - '&6============================================'
 message-help:
-   - '&6==================[&bPlaytime&6]=================='
+   - '&6==================[&b游玩时间&6]=================='
    - '&7/playtime:'
-   - '&fShows your playtime'
+   - '&f查看你的累计在线时间'
    - '&7/playtime [player]:'
-   - '&fShows another player''s playtime'
+   - '&f查看他人的累计在线时间'
    - '&7/playtime top10:'
-   - '&fShows the players with the most playtime'
-   - '&7/playtime set [player] [hours] [minutes] [seconds]:'
-   - '&fChanges the playtime of the player'
+   - '&f查看游玩时间排行榜'
+   - '&7/playtime [player] set [hours] [minutes] [seconds]:'
+   - '&f设置一个玩家的累计在线时间'
    - '&6============================================'
 
 

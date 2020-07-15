@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import peace.minecraftserver.utils.VaultUtil;
 
 
+import javax.swing.*;
 import java.util.*;
 
 public class InsureGui {
@@ -133,6 +134,8 @@ public class InsureGui {
                 //加声音
                 player.sendMessage("您本次消费"+ShopItem.getPrice(material));
                 player.sendMessage("您的余额还有："+VaultUtil.seemoney(player.getUniqueId()));
+                //把里面的东西变没
+
                 player.closeInventory();
             }else{
                 player.sendMessage(("余额不足"));
