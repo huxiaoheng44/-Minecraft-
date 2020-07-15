@@ -27,7 +27,7 @@ public class EffectEvent implements Listener {
     @EventHandler
     public void onPlayerInteractBlock(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (player.getItemInHand().getType() == Material.FISHING_ROD || player.hasPermission("setShopChest")) {
+        if (player.getItemInHand().getType() == Material.FISHING_ROD && player.hasPermission("setShopChest")) {
             // 在给定坐标中生成一道闪电. 在本例中, 这个坐标是玩家准星瞄准的地方.
             // 只能指向200格以内的坐标.
             player.getWorld().strikeLightning(player.getTargetBlock(null, 200).getLocation());
