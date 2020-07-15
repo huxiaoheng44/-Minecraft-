@@ -17,6 +17,7 @@ import org.bukkit.inventory.PlayerInventory;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.utils.BlockUtils;
 import peace.minecraftserver.utils.LocationUtil;
+import peace.minecraftserver.utils.PeaceAreaUtil;
 import peace.minecraftserver.utils.VaultUtil;
 
 
@@ -81,7 +82,8 @@ public class addEventListener implements Listener {
     public void PlayerIn(PlayerJoinEvent event){
         Player player = event.getPlayer(); // 当玩家加入游戏
         TagDirection td = new TagDirection(0,180,0,true,false);
-        VexImageTag vit2 = new VexImageTag("成就",0,100,0,"[local]gonggao.png",4000,2000,20,20,td);
+        Location location = PeaceAreaUtil.peaceAreaLocation;
+        VexImageTag vit2 = new VexImageTag("成就",location.getBlockX(),100,location.getBlockX(),"[local]gonggao.png",4000,2000,20,20,td);
         VexViewAPI.addWorldTag(player.getWorld(),vit2);
 
 

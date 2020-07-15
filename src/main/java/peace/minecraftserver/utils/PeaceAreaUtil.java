@@ -10,7 +10,7 @@ public class PeaceAreaUtil {
     //距离区域多少范围为安全区域
     public static int domain = 50;
     public static boolean IsPeaceArea(Location location){
-        peaceAreaLocation = new Location(location.getWorld(),0,0,0);
+        peaceAreaLocation = location.getWorld().getSpawnLocation();
         //peaceAreaLocation = location.getWorld().getSpawnLocation();
         //如果该位置在安全区域内
         if(Math.abs(location.getBlockX()-peaceAreaLocation.getBlockX())<=domain && Math.abs(location.getBlockZ()-peaceAreaLocation.getBlockZ())<=domain){

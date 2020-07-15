@@ -35,7 +35,7 @@ public class RoundCommandExecutor implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             PermissionAttachment attachment = sender.addAttachment(MinecraftServer.plugin);
-            if(command.getName().equalsIgnoreCase("round")){
+            if(command.getName().equalsIgnoreCase("round") && !sender.hasPermission("op")){
                 if(args.length==0){
                     if(VaultUtil.seemoney(((Player) sender).getUniqueId())>10000){
                         sender.sendMessage("落地特效开启");

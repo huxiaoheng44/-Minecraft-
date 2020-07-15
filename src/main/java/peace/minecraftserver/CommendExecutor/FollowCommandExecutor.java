@@ -20,7 +20,7 @@ public class FollowCommandExecutor implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             PermissionAttachment attachment = sender.addAttachment(MinecraftServer.plugin);
-            if(command.getName().equalsIgnoreCase("follow")){
+            if(command.getName().equalsIgnoreCase("follow") && !sender.hasPermission("op")){
                 if(args.length==0) {
                     if (VaultUtil.seemoney(((Player) sender).getUniqueId()) > 20000) {
                         sender.sendMessage("跟随特效开启");

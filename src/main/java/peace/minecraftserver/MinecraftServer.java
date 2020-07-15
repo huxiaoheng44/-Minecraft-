@@ -228,8 +228,9 @@ public final class MinecraftServer extends JavaPlugin {
         this.getCommand("achievement").setExecutor(new AchievementCommand(this));
 
         ShopItem.init();
+        //初始化安全区域
+        //PeaceAreaUtil.setArea();
 
-        //初始化公告
 
 
 
