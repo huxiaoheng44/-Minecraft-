@@ -80,17 +80,18 @@ public class PlayerInsureListener implements Listener {
                     if(event.getEntity().getLastDamageCause().getCause().name().equalsIgnoreCase("ENTITY_ATTACK")){
                         EntityDamageByEntityEvent event_damager=(EntityDamageByEntityEvent)event.getEntity().getLastDamageCause();
                         undamageEntity=event_damager.getDamager().getType();
-
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
-                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
+
                     break;
                 case "accident_death":
                     MinecraftServer.plugin.getLogger().info("accident");
                     if(!event.getEntity().getLastDamageCause().getCause().name().equalsIgnoreCase("ENTITY_ATTACK")){
                         MinecraftServer.plugin.getLogger().info("enter_accident");
                         accident_type=event.getEntity().getLastDamageCause().getCause();
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
-                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
+
                     break;
 
             }

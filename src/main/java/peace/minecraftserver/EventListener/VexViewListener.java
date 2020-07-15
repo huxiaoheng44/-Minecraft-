@@ -67,6 +67,15 @@ public class VexViewListener implements Listener {
         else if(id.equalsIgnoreCase("buy3")){
             insureUtils.could_buy(player,100,"monster_kill",3600);
         }
+        else if(id.equalsIgnoreCase("wood_insure")){
+            insureUtils.could_buy(player,10,"wood",3600);
+
+        }else if(id.equalsIgnoreCase("stone_insure")){
+            insureUtils.could_buy(player,15,"stone",3600);
+
+        }else if(id.equalsIgnoreCase("accident_insure")){
+            insureUtils.could_buy(player,100,"accident_death",3600);
+        }
         //确认按钮
         else if(id.equalsIgnoreCase("affirm")){
 
