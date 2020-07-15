@@ -2,6 +2,10 @@ package peace.minecraftserver.EventListener;
 
 
 import lk.vexview.api.VexViewAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
@@ -9,30 +13,24 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import peace.minecraftserver.Entity.ShopChest;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
 import peace.minecraftserver.utils.PeaceAreaUtil;
 import peace.minecraftserver.utils.TitleApi;
+
+import static org.bukkit.entity.EntityType.HORSE;
 import static org.bukkit.entity.EntityType.ITEM_FRAME;
 
 
 public class SaveAreaEvent implements Listener {
-    @EventHandler
-    public void SaveAreaInteract(PlayerInteractEvent event) {
-        //这部分好像暂时不需要
-//        Player player = event.getPlayer();
-//        if(PeaceAreaUtil.IsPeaceArea(player.getLocation()) && !player.hasPermission("op")) {
-//            player.sendMessage(String.valueOf(event.getClickedBlock().getType()));
-//            if(event.getClickedBlock().getType().equals(ITEM_FRAME)){
-//                VexViewAPI.openGui(player, MyGUI.AffirmLogue(player,1));
-//                TitleApi.sendTitle(player,4,5,4,"成功打开GUI","第一个界面");
-//            }
-//        }
-    }
+
     @EventHandler
     public void SaveAreaInteractEntity(PlayerInteractEntityEvent event) {
 //        Player player = event.getPlayer();
@@ -61,19 +59,27 @@ public class SaveAreaEvent implements Listener {
     public void EntityDamage(EntityDamageByEntityEvent event) {
 
         //如果点击到的是放商品的ITEM_FRAME
-        if (event.getDamager().getType().equals(EntityType.PLAYER)) {
-            if (event.getEntity().getType().equals(ITEM_FRAME) && PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
-                event.setCancelled(true);
-                ItemFrame frame = (ItemFrame) event.getEntity();
-                ItemStack itemStack = frame.getItem();
-                String type = itemStack.getType().toString();
-                Player player = (Player) event.getDamager();
-                VexViewAPI.openGui(player, InsureGui.AffirmLogue(player, type));
-                TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
-            } else if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
-                event.getDamager().sendMessage("你不能伤害其他其他人");
-                event.setCancelled(true);
+
+        if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
+            try {
+                if (event.getEntity().getType().equals(ITEM_FRAME) && event.getDamager().getType().equals(EntityType.PLAYER)) {
+                    event.setCancelled(true);
+                    ItemFrame frame = (ItemFrame) event.getEntity();
+                    ItemStack itemStack = frame.getItem();
+                    Player player = (Player) event.getDamager();
+                    //frame.setItem();
+                    player.sendMessage("§6查看商品");
+                    VexViewAPI.openGui(player, InsureGui.AffirmLogue(player, itemStack.getType()));
+                   // player.sendMessage("§6查看商品");
+                    //TitleApi.sendTitle(player, 4, 5, 4, "成功打开GUI", "第一个界面");
+                } else if (PeaceAreaUtil.IsPeaceArea(event.getDamager().getLocation())) {
+                    event.getDamager().sendMessage("你不能伤害其他其他人");
+                    event.setCancelled(true);
+                }
+            }catch (Exception e){
+
             }
+
         }
     }
 
@@ -82,10 +88,52 @@ public class SaveAreaEvent implements Listener {
         Player player = event.getPlayer();
         if(PeaceAreaUtil.IsPeaceArea(player.getLocation()) && !player.hasPermission("op")) {
             //player.sendMessage("-------------BlockPlaceEvent--------------");
-            player.sendMessage("你不能在这里建造东西");
+            //如果该玩家有开店的权限的话可以放置箱子
+            if(player.hasPermission("setShopChest") && event.getBlockPlaced().getType()==Material.CHEST){
+                event.setBuild(true);
+                ShopChest.setShopChest(event.getBlockPlaced().getLocation(),player);
+            }
+            else {
+                //player.sendMessage("getBlockAgainst" + event.getBlockAgainst());
+                player.sendMessage("你不能在这里建造东西");
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void InteractBlock(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        try {
+            Block block = event.getClickedBlock();
+            //如果是箱子则可以卖东西
+            if(block.getType()== Material.CHEST){
+                //player.sendMessage("你点击了shop");
+                //如果该玩家是主人的话
+                if(ShopChest.isOwner(block.getLocation(),player)){
+                    player.sendMessage("你是店主");
+                }else{
+                    player.sendMessage("你是买家");
+                    Inventory inventory = Bukkit.createInventory(null, 54, "地摊");
+                    Chest chest = (Chest)block;
+                    Inventory chest_inventory = chest.getInventory();
+                    inventory.addItem(chest_inventory.getContents());
+                    //这里写具体怎么买东西
+                }
+            }
+        }catch (Exception e){
+
+        }
+    }
+
+    @EventHandler
+    public void SpawnEvent(CreatureSpawnEvent event) {
+        //不允许出生怪物
+        if(PeaceAreaUtil.IsPeaceArea(event.getEntity().getLocation()) && event.getEntity().getType()!=HORSE){
             event.setCancelled(true);
         }
     }
+
 //    @EventHandler
 //    public void EntityDeath(EntityDeathEvent event){
 //        MyPlugin.plugin.getLogger().info("-------------BlockBreakEvent--------------"+event.getEntity());
