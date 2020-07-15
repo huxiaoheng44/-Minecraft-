@@ -6,11 +6,38 @@ depends:
   - TitleAPI
   - VexView
 commands:
+  main:
+    description: open main
+    usage: /main <shop>|<insure>|<function>|<achieve>
   getMoney:
     description: This is a money demo command.
     usage: /<getMoney>
-  playtime:
+
+  insureshow:
+    description: show player insure state
+    usage: /<insure>
+
+  shop:
+    description: open shop
+    usage: /shop <auction>|<buy>|<lottery>
   insure:
+    description: open insure gui
+    usage: /insure <message>|<buy>|
+  achievement:
+    description: open achievement gui
+    usage: /achieve <message>|<buy>|
+  function:
+    description: open function gui
+    usage: /function <message>|<buy>|
+  playtime:
+
   money:
   show:
   cheat:
+  #攻击特效指令
+  attack:
+  #落地特效
+  round:
+  #跟随特效
+  follow:
+

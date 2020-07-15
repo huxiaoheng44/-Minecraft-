@@ -17,8 +17,9 @@ mysql-database: 'safetyplugin'
 mysql-username: 'root'
 
 #mysql-password: '1484sbjsjyd'
-mysql-password: 'wzh861613130'
 #mysql-password: 'hxh19981225'
+
+mysql-password: 'hxh19981225'
 
 
 
@@ -64,3 +65,38 @@ message-help:
    - '&7/playtime set [player] [hours] [minutes] [seconds]:'
    - '&f改变玩家的游玩时间'
    - '&6============================================'
+
+
+#shopping
+#names:
+#   - "IRON_INGOT"
+#   - "GOLD_INGOT"
+#   - "DIAMOND"
+#   - "FISHING_ROD"
+#   - "COOKED_CHICKEN"
+#   - "COOKED_BEEF"
+#   - "Material.BED"
+#   - "TORCH"
+#   - "BOW"
+#
+#labels:
+#   - "铁锭"
+#   - "金锭"
+#   - "钻石"
+#   - "鱼竿"
+#   - "熟鸡肉"
+#   - "牛排"
+#   - "床"
+#   - "火把"
+#   - "弓"
+#
+#prices:
+#   - 10
+#   - 30
+#   - 100
+#   - 50
+#   - 6
+#   - 8
+#   - 50
+#   - 2
+#   - 100

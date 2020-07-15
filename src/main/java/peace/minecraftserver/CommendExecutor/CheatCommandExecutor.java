@@ -20,6 +20,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.permissions.PermissionAttachment;
 import peace.minecraftserver.Entity.TeleHorse;
 import peace.minecraftserver.MinecraftServer;
+import peace.minecraftserver.utils.PeaceAreaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,14 +117,24 @@ public class CheatCommandExecutor implements CommandExecutor {
                         PermissionAttachment attachment = commandSender.addAttachment(MinecraftServer.plugin);
                         attachment.setPermission("op",false);
                         commandSender.sendMessage("你取消了钻石管理员");
+                    }else if(strings[i].equalsIgnoreCase("chestShop")){
+                        PermissionAttachment attachment = commandSender.addAttachment(MinecraftServer.plugin);
+                        attachment.setPermission("setShopChest",true);
+                        commandSender.sendMessage("你获得了开店权限");
                     }
+
 
                 }
                 return true;
             }
         }else {
-            commandSender.sendMessage("You must be a player!");
-            return false;
+            if(strings[0].equalsIgnoreCase("setArea") ){
+                PeaceAreaUtil.setArea();
+                commandSender.sendMessage("已经设置边界");
+            }else {
+                commandSender.sendMessage("You must be a player!");
+                return false;
+            }
         }
         return false;
     }
