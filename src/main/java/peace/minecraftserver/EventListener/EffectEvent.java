@@ -15,7 +15,7 @@ public class EffectEvent implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         // 得到玩家当前的坐标.
-        if(player.hasPermission("vip.v3")) {
+        if(player.hasPermission("vip.v3") && !player.hasPermission("op")) {
             Location location = player.getLocation();
             location.getWorld().playEffect(location, Effect.MOBSPAWNER_FLAMES,1);
             //location.getWorld().playEffect(location, Effect.ENDER_SIGNAL, 1);
