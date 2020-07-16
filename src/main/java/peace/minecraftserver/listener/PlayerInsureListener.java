@@ -140,7 +140,9 @@ public class PlayerInsureListener implements Listener {
     @EventHandler
     public void test(PlayerInteractEvent event){
         if(event.getAction().equals(Action.RIGHT_CLICK_AIR)){
-            event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+            if(event.getPlayer().getName().equalsIgnoreCase("tony")){
+                event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+            }
         }
         if (event.getAction().equals(Action.LEFT_CLICK_AIR)){
            VaultUtil.give(event.getPlayer().getUniqueId(),200);

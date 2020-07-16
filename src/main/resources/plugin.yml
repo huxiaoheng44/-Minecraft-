@@ -31,6 +31,7 @@ commands:
     usage: /function <message>|<buy>|
   playtime:
     description: get your playtime
+
   money:
   show:
   cheat:

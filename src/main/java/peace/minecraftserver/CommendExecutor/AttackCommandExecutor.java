@@ -21,7 +21,7 @@ public class AttackCommandExecutor implements CommandExecutor {
             PermissionAttachment attachment = sender.addAttachment(MinecraftServer.plugin);
             if(command.getName().equalsIgnoreCase("attack")){
                 if(args.length==0) {
-                    if (VaultUtil.seemoney(((Player) sender).getUniqueId()) > 15000) {
+                    if (VaultUtil.seemoney(((Player) sender).getUniqueId()) > 15000 && !sender.hasPermission("op")) {
                         sender.sendMessage("攻击特效开启");
                         attachment.setPermission("attackon", true);
                     } else {
