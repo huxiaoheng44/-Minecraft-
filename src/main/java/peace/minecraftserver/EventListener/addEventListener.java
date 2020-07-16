@@ -80,13 +80,15 @@ public class addEventListener implements Listener {
     //初始化公告
     @EventHandler
     public void PlayerIn(PlayerJoinEvent event){
+
         Player player = event.getPlayer(); // 当玩家加入游戏
+        PeaceAreaUtil.init(player.getLocation());
+        PeaceAreaUtil.IsPeaceArea(player.getLocation());
+
         TagDirection td = new TagDirection(0,180,0,true,false);
         Location location = PeaceAreaUtil.peaceAreaLocation;
         VexImageTag vit2 = new VexImageTag("成就",location.getBlockX(),100,location.getBlockZ(),"[local]gonggao.png",4000,2000,20,20,td);
         VexViewAPI.addWorldTag(player.getWorld(),vit2);
-
-
 
     }
 

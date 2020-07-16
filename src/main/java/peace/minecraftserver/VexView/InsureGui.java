@@ -147,7 +147,7 @@ public class InsureGui {
 
         vexComponentsList.add(new VexText(280,25,Arrays.asList("意外保险"),2));
         vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
-        vexComponentsList.add(new VexText(275,70,Arrays.asList("§6意外保险:","重生后不受意外死亡类型伤害","价格：100金币","达成条件:意外死亡"),1));
+        vexComponentsList.add(new VexText(275,70,Arrays.asList("§6意外保险:","重生后不受意外死亡","类型伤害","价格：100金币","达成条件:意外死亡"),1));
         vexComponentsList.add(new VexText(275,200,Arrays.asList("有效时间:1小时"),1.5));
         vexComponentsList.add(new VexButton("accident_insure","购买","[local]button.png","[local]button_.png",295,225,35,25));
         return new VexGui("[local]gui.png",-1,-1,400,270,vexComponentsList);

@@ -10,8 +10,7 @@ public class PeaceAreaUtil {
     //距离区域多少范围为安全区域
     public static int domain = 50;
     public static boolean IsPeaceArea(Location location){
-        peaceAreaLocation = location.getWorld().getSpawnLocation();
-        //peaceAreaLocation = location.getWorld().getSpawnLocation();
+
         //如果该位置在安全区域内
         if(Math.abs(location.getBlockX()-peaceAreaLocation.getBlockX())<=domain && Math.abs(location.getBlockZ()-peaceAreaLocation.getBlockZ())<=domain){
             return true;
@@ -53,5 +52,8 @@ public class PeaceAreaUtil {
             tLoc.getBlock().setType(Material.DIAMOND_BLOCK);
             tLoc = tLoc.subtract(0,1,0);
         }
+    }
+    public static void init(Location location){
+        peaceAreaLocation = location.getWorld().getSpawnLocation();
     }
 }

@@ -59,7 +59,7 @@ public class MainGui {
         int hour=MinecraftServer.mysql.getSeconds(player.getUniqueId().toString()).intValue()/3600;
         return hour+"小时"+minute+"分钟"+second+"秒";
     }
-    private static String getConday(Player player){
+    public static String getConday(Player player){
         ResultSet rs = MinecraftServer.mysql.getCheckIN(player);
         int conday=0;
         if(rs!=null) {
