@@ -22,6 +22,7 @@ import peace.minecraftserver.commands.CommandBase;
 import peace.minecraftserver.commands.CommandInsure;
 import peace.minecraftserver.commands.CommandManager;
 import peace.minecraftserver.listener.InventoryListener;
+import peace.minecraftserver.listener.KillingEvent;
 import peace.minecraftserver.listener.PlayerInsureListener;
 import peace.minecraftserver.listener.PlayerListener;
 import peace.minecraftserver.utils.*;
@@ -176,6 +177,7 @@ public final class MinecraftServer extends JavaPlugin {
                     }else if(timer.getLastdayseconds()>6*60*60){
                         TitleApi.sendTitle(player,5,5,4,"游玩时间已经六小时了，建议合理安排时间","");
 //                        ((Player)timer.getPlayer()).sendMessage("游玩时间已经六小时了，建议合理安排时间");
+
                         ((Player)timer.getPlayer()).kickPlayer("游玩时间超过六小时，请明天再来玩吧");
                     }
                 }
@@ -219,6 +221,8 @@ public final class MinecraftServer extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new RoundEffectEvent(),this);
         //跟随特效
         Bukkit.getPluginManager().registerEvents(new FollowEffectEvent(),this);
+        //击杀奖励
+        Bukkit.getPluginManager().registerEvents(new KillingEvent(),this);
 
 
         this.getCommand("money").setExecutor(new EconomyCommandExecutor(this));

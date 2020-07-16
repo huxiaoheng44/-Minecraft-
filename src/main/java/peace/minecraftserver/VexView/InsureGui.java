@@ -93,6 +93,10 @@ public class InsureGui {
         vexComponentsList.add(new VexButton("back","返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, InsureGui.InsureMainGui(player));
         }));
+        //下一页按钮
+        vexComponentsList.add(new VexButton("next_insure_frame","下一页","[local]button.png","[local]button_.png",50,10,23,13,player1 -> {
+            VexViewAPI.openGui(player, InsureGui.Insure_next_Gui(player));
+        }));
 
         //参数 x y 字体大小
         vexComponentsList.add(new VexText(35,25,Arrays.asList("钻石保险"),2));
@@ -101,21 +105,57 @@ public class InsureGui {
         //参数 x y 内容 字体大小
         vexComponentsList.add(new VexText(30,70,Arrays.asList("§6钻石保险:","返还钻石和金币","价格：100金币","达成条件：角色死亡"),1));
         vexComponentsList.add(new VexText(35,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy1","购买","[local]button.png","[local]button_.png",50,225,35,25));
+        vexComponentsList.add(new VexButton("diamond_insure","购买","[local]button.png","[local]button_.png",50,225,35,25));
 
         vexComponentsList.add(new VexText(160,25,Arrays.asList("黄金保险"),2));
         vexComponentsList.add(new VexImage("[local]inv.png",150,55,90,120));
         vexComponentsList.add(new VexText(155,70,Arrays.asList("§6黄金保险:","返还黄金","价格：50金币","达成条件：角色死亡"),1));
         vexComponentsList.add(new VexText(160,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy2","购买","[local]button.png","[local]button_.png",175,225,35,25));
+        vexComponentsList.add(new VexButton("gold_insure","购买","[local]button.png","[local]button_.png",175,225,35,25));
 
         vexComponentsList.add(new VexText(280,25,Arrays.asList("怪物保险"),2));
         vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
         vexComponentsList.add(new VexText(275,70,Arrays.asList("§6怪物保险:","不受该种怪物伤害","价格：100金币","达成条件:被怪物击杀"),1));
         vexComponentsList.add(new VexText(275,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy3","购买","[local]button.png","[local]button_.png",295,225,35,25));
+        vexComponentsList.add(new VexButton("monster_insure","购买","[local]button.png","[local]button_.png",295,225,35,25));
         return new VexGui("[local]gui.png",-1,-1,400,270,vexComponentsList);
     }
+    //下一页保险
+    public static VexGui Insure_next_Gui(Player player){
+        List<VexComponents> vexComponentsList = new ArrayList<>();
+
+        //添加返回上一级的按钮
+        vexComponentsList.add(new VexButton("back","上一页","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
+            VexViewAPI.openGui(player, InsureGui.InsurePurchase(player));
+        }));
+
+
+        //参数 x y 字体大小
+        vexComponentsList.add(new VexText(35,25,Arrays.asList("树木保险"),2));
+        //参数 x y 图片宽 图片高
+        vexComponentsList.add(new VexImage("[local]inv.png",25,55,90,120));
+        //参数 x y 内容 字体大小
+        vexComponentsList.add(new VexText(30,70,Arrays.asList("§6树木保险:","保留经验","价格：10金币","达成条件：角色死亡"),1));
+        vexComponentsList.add(new VexText(35,200,Arrays.asList("有效时间:1小时"),1.5));
+        vexComponentsList.add(new VexButton("wood_insure","购买","[local]button.png","[local]button_.png",50,225,35,25));
+
+        vexComponentsList.add(new VexText(160,25,Arrays.asList("石头保险"),2));
+        vexComponentsList.add(new VexImage("[local]inv.png",150,55,90,120));
+        vexComponentsList.add(new VexText(155,70,Arrays.asList("§6石头保险:","保留装备","价格：15金币","达成条件：角色死亡"),1));
+        vexComponentsList.add(new VexText(160,200,Arrays.asList("有效时间:1小时"),1.5));
+        vexComponentsList.add(new VexButton("stone_insure","购买","[local]button.png","[local]button_.png",175,225,35,25));
+
+        vexComponentsList.add(new VexText(280,25,Arrays.asList("意外保险"),2));
+        vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
+        vexComponentsList.add(new VexText(275,70,Arrays.asList("§6意外保险:","重生后不受意外死亡类型伤害","价格：100金币","达成条件:意外死亡"),1));
+        vexComponentsList.add(new VexText(275,200,Arrays.asList("有效时间:1小时"),1.5));
+        vexComponentsList.add(new VexButton("accident_insure","购买","[local]button.png","[local]button_.png",295,225,35,25));
+        return new VexGui("[local]gui.png",-1,-1,400,270,vexComponentsList);
+    }
+
+
+
+
 
 
     public static VexGui AffirmLogue(Player player, Material material, ItemFrame itemFrame){

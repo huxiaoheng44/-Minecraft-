@@ -369,7 +369,7 @@ public class Mysql {
             ps.setString(1, uuid);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                now = Integer.valueOf(rs.getInt("Seconds"));
+                now = MinecraftServer.tm.getTimerByUUID(uuid).getSeconds();
                 lastday = Integer.valueOf(rs.getInt("LastdaySeconds"));
                 return now-lastday;
             }
