@@ -101,19 +101,19 @@ public class InsureGui {
         //参数 x y 内容 字体大小
         vexComponentsList.add(new VexText(30,70,Arrays.asList("§6钻石保险:","返还钻石和金币","价格：100金币","达成条件：角色死亡"),1));
         vexComponentsList.add(new VexText(35,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy1","购买","[local]button.png","[local]button_.png",50,225,35,25));
+        vexComponentsList.add(new VexButton("diamond_insure","购买","[local]button.png","[local]button_.png",50,225,35,25));
 
         vexComponentsList.add(new VexText(160,25,Arrays.asList("黄金保险"),2));
         vexComponentsList.add(new VexImage("[local]inv.png",150,55,90,120));
         vexComponentsList.add(new VexText(155,70,Arrays.asList("§6黄金保险:","返还黄金","价格：50金币","达成条件：角色死亡"),1));
         vexComponentsList.add(new VexText(160,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy2","购买","[local]button.png","[local]button_.png",175,225,35,25));
+        vexComponentsList.add(new VexButton("gold_insure","购买","[local]button.png","[local]button_.png",175,225,35,25));
 
         vexComponentsList.add(new VexText(280,25,Arrays.asList("怪物保险"),2));
         vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
         vexComponentsList.add(new VexText(275,70,Arrays.asList("§6怪物保险:","不受该种怪物伤害","价格：100金币","达成条件:被怪物击杀"),1));
         vexComponentsList.add(new VexText(275,200,Arrays.asList("有效时间:1小时"),1.5));
-        vexComponentsList.add(new VexButton("buy3","购买","[local]button.png","[local]button_.png",295,225,35,25));
+        vexComponentsList.add(new VexButton("monster_insure","购买","[local]button.png","[local]button_.png",295,225,35,25));
         return new VexGui("[local]gui.png",-1,-1,400,270,vexComponentsList);
     }
     //下一页保险

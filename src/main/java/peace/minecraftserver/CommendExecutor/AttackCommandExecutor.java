@@ -18,8 +18,7 @@ public class AttackCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
-            Player p;
-            p.ty
+
             PermissionAttachment attachment = sender.addAttachment(MinecraftServer.plugin);
             if(command.getName().equalsIgnoreCase("attack")){
                 if(args.length==0) {

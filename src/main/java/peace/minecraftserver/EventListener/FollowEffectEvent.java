@@ -15,7 +15,7 @@ public class FollowEffectEvent implements Listener {
         if(player.hasPermission("follow")) {
             Location location = player.getLocation();
 
-            location.getWorld().playEffect(location, Effect.SMOKE, 1);
+            location.getWorld().playEffect(location, Effect.MOBSPAWNER_FLAMES, 1);
         }
     }
 }

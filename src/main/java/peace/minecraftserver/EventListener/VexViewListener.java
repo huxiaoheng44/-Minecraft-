@@ -1,20 +1,16 @@
 package peace.minecraftserver.EventListener;
 
-import com.connorlinfoot.titleapi.TitleAPI;
 import lk.vexview.api.VexViewAPI;
 import lk.vexview.event.ButtonClickEvent;
 import lk.vexview.event.KeyBoardPressEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.event.player.PlayerJoinEvent;
 import peace.minecraftserver.MinecraftServer;
-import peace.minecraftserver.VexView.InsureGui;
 import peace.minecraftserver.VexView.MainGui;
 
 import peace.minecraftserver.utils.InsureUtils;
-
-import peace.minecraftserver.utils.VaultUtil;
 
 
 import java.util.ArrayList;
@@ -56,15 +52,15 @@ public class VexViewListener implements Listener {
         String id = (String) event.getButtonID();
         List<String> messages = new ArrayList<String>();
         //第一个购买按钮
-        if(id.equalsIgnoreCase("buy1")){
+        if(id.equalsIgnoreCase("diamond_insure")){
             insureUtils.could_buy(player,100,"diamond",3600);
         }
         //第二个购买按钮
-        else if(id.equalsIgnoreCase("buy2")){
+        else if(id.equalsIgnoreCase("gold_insure")){
             insureUtils.could_buy(player,50,"gold",3600);
         }
         //第三个购买按钮
-        else if(id.equalsIgnoreCase("buy3")){
+        else if(id.equalsIgnoreCase("monster_insure")){
             insureUtils.could_buy(player,100,"monster_kill",3600);
         }
         else if(id.equalsIgnoreCase("wood_insure")){
