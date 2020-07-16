@@ -31,13 +31,13 @@ commands:
     usage: /function <message>|<buy>|
   playtime:
     description: get your playtime
-
   money:
   show:
   cheat:
   attack:
   round:
   follow:
+
 permissions:
   playtime.*:
     description: get your playtime

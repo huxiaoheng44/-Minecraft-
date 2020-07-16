@@ -150,23 +150,34 @@ public final class MinecraftServer extends JavaPlugin {
         (new BukkitRunnable() {
             public void run() {
                 for (Timer timer : MinecraftServer.tm.getTimer()) {
+                    Player player=(Player)timer.getPlayer();
 //                    if(timer.getLastdayseconds()>60*60 && timer.getLastdayseconds()<60*62){
 //                        ((Player)timer.getPlayer()).sendMessage("游玩时间超过一小时");
 //                    }
                     //((Player)timer.getPlayer()).sendMessage("test-定时器被调用，时间为"+Integer.toString(timer.getLastdayseconds()));
-                    if((timer.getLastdayseconds()>=60*60 && timer.getLastdayseconds()<60*60+2*60)||
-                            (timer.getLastdayseconds()>=2*60*60 && timer.getLastdayseconds()<2*60*60+2*60)||
-                            (timer.getLastdayseconds()>=3*60*60 && timer.getLastdayseconds()<3*60*60+2*60)||
-                            (timer.getLastdayseconds()>=4*60*60 && timer.getLastdayseconds()<4*60*60+2*60)||
-                            (timer.getLastdayseconds()>=5*60*60 && timer.getLastdayseconds()<5*60*60+2*60)){
-                        ((Player)timer.getPlayer()).sendMessage("游玩时间已经超过"+ MinecraftServer.utils.getHours(timer.getPlayer())+"小时了，建议合理安排时间");
-                        ((Player)timer.getPlayer()).sendMessage("健康游戏忠告：\n" +
+                    if((timer.getLastdayseconds()>60*60 && timer.getLastdayseconds()<60*60+2*60)||
+                            (timer.getLastdayseconds()>2*60*60 && timer.getLastdayseconds()<2*60*60+2*60)||
+                            (timer.getLastdayseconds()>3*60*60 && timer.getLastdayseconds()<3*60*60+2*60)||
+                            (timer.getLastdayseconds()>4*60*60 && timer.getLastdayseconds()<4*60*60+2*60)||
+                            (timer.getLastdayseconds()>5*60*60 && timer.getLastdayseconds()<5*60*60+2*60)){
+
+
+                        TitleApi.sendTitle(player,5,5,4,"游玩时间已经超过"+ MinecraftServer.utils.getHours(timer.getPlayer())+"小时了，建议合理安排时间","");
+                        TitleApi.sendTitle(player,5,5,4,"健康游戏忠告：\n" +
                                 "抵制不良游戏，拒绝盗版游戏。\n" +
                                 "注意自我保护，谨防受骗上当。\n" +
                                 "适度游戏益脑，沉迷游戏伤身。\n" +
-                                "合理安排时间，享受健康生活。\n");
-                    }else if(timer.getLastdayseconds()>=6*60*60){
-                        ((Player)timer.getPlayer()).sendMessage("游玩时间已经六小时了，建议合理安排时间");
+                                "合理安排时间，享受健康生活。\n","");
+//                        ((Player)timer.getPlayer()).sendMessage("游玩时间已经超过"+ MinecraftServer.utils.getHours(timer.getPlayer())+"小时了，建议合理安排时间");
+//                        ((Player)timer.getPlayer()).sendMessage("健康游戏忠告：\n" +
+//                                "抵制不良游戏，拒绝盗版游戏。\n" +
+//                                "注意自我保护，谨防受骗上当。\n" +
+//                                "适度游戏益脑，沉迷游戏伤身。\n" +
+//                                "合理安排时间，享受健康生活。\n");
+                    }else if(timer.getLastdayseconds()>6*60*60){
+                        TitleApi.sendTitle(player,5,5,4,"游玩时间已经六小时了，建议合理安排时间","");
+//                        ((Player)timer.getPlayer()).sendMessage("游玩时间已经六小时了，建议合理安排时间");
+
                         ((Player)timer.getPlayer()).kickPlayer("游玩时间超过六小时，请明天再来玩吧");
                     }
                 }

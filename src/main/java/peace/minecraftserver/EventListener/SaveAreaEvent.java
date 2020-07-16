@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,15 +16,19 @@ import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import peace.minecraftserver.Entity.ShopChest;
+import peace.minecraftserver.Entity.ShopItem;
 import peace.minecraftserver.MinecraftServer;
 import peace.minecraftserver.VexView.InsureGui;
+import peace.minecraftserver.VexView.shopGui;
 import peace.minecraftserver.utils.PeaceAreaUtil;
 import peace.minecraftserver.utils.TitleApi;
+import peace.minecraftserver.utils.VaultUtil;
 
 import static org.bukkit.entity.EntityType.HORSE;
 import static org.bukkit.entity.EntityType.ITEM_FRAME;
@@ -111,7 +116,7 @@ public class SaveAreaEvent implements Listener {
                 //player.sendMessage("你点击了shop");
                 //如果该玩家是主人的话
                 if(ShopChest.isOwner(block.getLocation(),player)){
-                    player.sendMessage("你是店主");
+                    player.sendMessage("你是店主,可以随意操作");
                 }else{
                     player.sendMessage("你是买家");
                     Inventory inventory = Bukkit.createInventory(null, 54, "地摊");
@@ -119,18 +124,11 @@ public class SaveAreaEvent implements Listener {
                     Inventory chest_inventory = chest.getInventory();
                     inventory.addItem(chest_inventory.getContents());
                     //这里写具体怎么买东西
+
                 }
             }
         }catch (Exception e){
 
-        }
-    }
-
-    @EventHandler
-    public void SpawnEvent(CreatureSpawnEvent event) {
-        //不允许出生怪物
-        if(PeaceAreaUtil.IsPeaceArea(event.getEntity().getLocation()) && event.getEntity().getType()!=HORSE){
-            event.setCancelled(true);
         }
     }
 
