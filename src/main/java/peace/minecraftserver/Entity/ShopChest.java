@@ -31,8 +31,12 @@ public class ShopChest {
     }
     public static boolean isOwner(Location location,Player player){
         if(chest2Player.get(location)==player.getUniqueId()){
+            player.sendMessage("这个店主是："+chest2Player.get(location));
+            player.sendMessage("你是："+player);
             return true;
         }else{
+            player.sendMessage("这个店主是："+chest2Player.get(location));
+            player.sendMessage("你是："+player);
             return false;
         }
     }

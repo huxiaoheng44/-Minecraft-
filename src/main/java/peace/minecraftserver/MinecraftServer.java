@@ -150,10 +150,12 @@ public final class MinecraftServer extends JavaPlugin {
         (new BukkitRunnable() {
             public void run() {
                 for (Timer timer : MinecraftServer.tm.getTimer()) {
+                    Player player=(Player)timer.getPlayer();
 //                    if(timer.getLastdayseconds()>60*60 && timer.getLastdayseconds()<60*62){
 //                        ((Player)timer.getPlayer()).sendMessage("游玩时间超过一小时");
 //                    }
                     //((Player)timer.getPlayer()).sendMessage("test-定时器被调用，时间为"+Integer.toString(timer.getLastdayseconds()));
+
                     if((timer.getLastdayseconds()>=60*60 && timer.getLastdayseconds()<60*60+2*60)||
                             (timer.getLastdayseconds()>=2*60*60 && timer.getLastdayseconds()<2*60*60+2*60)||
                             (timer.getLastdayseconds()>=3*60*60 && timer.getLastdayseconds()<3*60*60+2*60)||
@@ -167,7 +169,6 @@ public final class MinecraftServer extends JavaPlugin {
                                 "合理安排时间，享受健康生活。\n");
                     }else if(timer.getLastdayseconds()>=6*60*60){
                         ((Player)timer.getPlayer()).sendMessage("游玩时间已经六小时了，建议合理安排时间");
-                        ((Player)timer.getPlayer()).kickPlayer("游玩时间超过六小时，请明天再来玩吧");
                     }
                 }
             }

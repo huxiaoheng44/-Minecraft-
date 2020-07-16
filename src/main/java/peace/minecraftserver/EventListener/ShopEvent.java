@@ -31,7 +31,7 @@ public class ShopEvent implements Listener {
             ItemStack itemStack12 = inventory.getItem(event.getRawSlot());
             Material material= itemStack12.getType();
 
-            if(event.getRawSlot()<=8){
+            if(event.getRawSlot()<=14){
                 event.setCancelled(true);
 //<<<<<<< HEAD
 //                if(VaultUtil.pay(player.getUniqueId(),pri[event.getRawSlot()])){
