@@ -51,17 +51,17 @@ permissions:
       playtime.settime: true
       playtime.help: true
   playtime.use:
-    description: 查看自己的在线时间
+    description:
     default: true
   playtime.use.other:
-    description: 查看其他人的在线时间
+    description:
     default: true
   playtime.top10:
-    description: 查看在线时间前10的玩家
+    description:
     default: true
   playtime.settime:
-    description: 设置玩家的在线时间
+    description:
     default: true
   playtime.help:
-    description: 查看在线时间前10的玩家
+    description:
     default: true
