@@ -30,8 +30,7 @@ commands:
     description: open function gui
     usage: /function <message>|<buy>|
   playtime:
-    default: true
-
+    description: get your playtime
   money:
   show:
   cheat:
@@ -41,30 +40,4 @@ commands:
   round:
   #跟随特效
   follow:
-  
-  
- permissions:
-  playtime.*:
-    description: get your playtime
-    children:
-      playtime.use: true
-      playtime.use.other: true
-      playtime.top10: true
-      playtime.settime: true
-      playtime.help: true
-  playtime.use:
-    description: 查看自己的在线时间
-    default: true
-  playtime.use.other:
-    description: 查看其他人的在线时间
-    default: true
-  playtime.top10:
-    description: 查看在线时间前10的玩家
-    default: true
-  playtime.settime:
-    description: 设置玩家的在线时间
-    default: true
-  playtime.help:
-    description: 查看在线时间前10的玩家
-    default: true
 
