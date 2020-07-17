@@ -24,9 +24,3 @@
 /* 24 */     return this.commands;
 /*    */   }
 /*    */ }
-
-
-/* Location:              /Users/wzh/Downloads/PlaytimePlus.jar!/de/forcycode/playtimeplus/commands/CommandManager.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */
