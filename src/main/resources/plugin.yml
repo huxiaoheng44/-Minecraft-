@@ -10,15 +10,50 @@ commands:
     description: open main
     usage: /main <shop>|<insure>|<function>|<achieve>
   getMoney:
-    description: Used for show money
-    usage:
+    description: This is a money demo command.
+    usage: /<getMoney>
+
+  insureshow:
+    description: show player insure state
+    usage: /<insure>
+
   shop:
     description: open shop
-    usage: shop <auction>|<buy>|<lottery>
+    usage: /shop <auction>|<buy>|<lottery>
   insure:
-    description: open
+    description: open insure gui
     usage: /insure <message>|<buy>|
+  achievement:
+    description: open achievement gui
+    usage: /achieve <message>|<buy>|
+  function:
+    description: open function gui
+    usage: /function <message>|<buy>|
   playtime:
+    description: get your playtime
   money:
   show:
   cheat:
+  attack:
+  round:
+  follow:
+
+permissions:
+  playtime.*:
+    description: get your playtime
+    children:
+      playtime.use: true
+      playtime.use.other: true
+      playtime.top10: true
+      playtime.settime: true
+      playtime.help: true
+  playtime.use:
+    default: true
+  playtime.use.other:
+    default: true
+  playtime.top10:
+    default: true
+  playtime.settime:
+    default: true
+  playtime.help:
+    default: true

@@ -40,7 +40,7 @@ public class PlayerInsureListener implements Listener {
         init(event.getEntity().getUniqueId().toString());
         for (int i=0;i<insures.length;i++){
             String insure=insures[i];
-            if(insureUtils.is_insur_out(event.getEntity(),insure))
+            if(insureUtils.is_insur_out(event.getEntity(),insure)!=0)
                 continue;
             switch (insure) {
                 case "wood":
@@ -57,7 +57,6 @@ public class PlayerInsureListener implements Listener {
                     MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     break;
                 case "gold":
-                    MinecraftServer.plugin.getLogger().info("enter");
                     if(event.getEntity().getInventory().firstEmpty()!=-1){
                         event.getEntity().getInventory().addItem(new ItemStack(Material.GOLD_BLOCK, 5));
                         event.setKeepInventory(true);
@@ -75,24 +74,24 @@ public class PlayerInsureListener implements Listener {
                     VaultUtil.give(event.getEntity().getUniqueId(), 10);
                     event.setKeepInventory(true);
                     event.setKeepLevel(true);
-                    MinecraftServer.plugin.getLogger().info("reborn");
                     break;
                 case "monster_kill":
 
                     if(event.getEntity().getLastDamageCause().getCause().name().equalsIgnoreCase("ENTITY_ATTACK")){
                         EntityDamageByEntityEvent event_damager=(EntityDamageByEntityEvent)event.getEntity().getLastDamageCause();
                         undamageEntity=event_damager.getDamager().getType();
-
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
-                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
+
                     break;
                 case "accident_death":
                     MinecraftServer.plugin.getLogger().info("accident");
                     if(!event.getEntity().getLastDamageCause().getCause().name().equalsIgnoreCase("ENTITY_ATTACK")){
                         MinecraftServer.plugin.getLogger().info("enter_accident");
                         accident_type=event.getEntity().getLastDamageCause().getCause();
+                        MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
                     }
-                    MinecraftServer.mysql.deletInsure(event.getEntity().getUniqueId().toString(),insure);
+
                     break;
 
             }
@@ -110,7 +109,7 @@ public class PlayerInsureListener implements Listener {
         if(event.getPlayer().getInventory().firstEmpty()==-1) {
             for (int i = 0; i < insures.length; i++) {
                 String insure = insures[i];
-                if(insureUtils.is_insur_out(event.getPlayer(),insure))
+                if(insureUtils.is_insur_out(event.getPlayer(),insure)!=0)
                     continue;
                 switch (insure) {
                     case "gold":
@@ -142,11 +141,12 @@ public class PlayerInsureListener implements Listener {
 //    @EventHandler
 //    public void test(PlayerInteractEvent event){
 //        if(event.getAction().equals(Action.RIGHT_CLICK_AIR)){
-//            event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+//            if(event.getPlayer().getName().equalsIgnoreCase("tony")){
+//                event.getPlayer().getWorld().spawnEntity(event.getPlayer().getLocation(),EntityType.HUSK);
+//            }
 //        }
 //        if (event.getAction().equals(Action.LEFT_CLICK_AIR)){
-//            InsureUtils insureUtils = new InsureUtils();
-//            insureUtils.is_insur_out(event.getPlayer(),"diamond");
+//           VaultUtil.give(event.getPlayer().getUniqueId(),200);
 //        }
 //    }
 }

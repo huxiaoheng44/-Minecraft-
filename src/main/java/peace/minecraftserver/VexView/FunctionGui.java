@@ -20,14 +20,14 @@ public class FunctionGui {
         vexComponentsList.add(new VexButton("back","返回","[local]button.png","[local]button_.png",10,10,23,13,player1 -> {
             VexViewAPI.openGui(player, MainGui.main(player));
         }));
-        vexComponentsList.add(new VexButton("payfunction","付费功能","[local]button.png","[local]button_.png",-1,80,120,30, p -> {
+        vexComponentsList.add(new VexButton("payfunction","§5付费功能","[local]button.png","[local]button_.png",-1,80,120,30, p -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionCharge(player));
         }));
-        vexComponentsList.add(new VexButton("freefunction","免费功能","[local]button.png","[local]button_.png",-1,140,120,30,player1 -> {
+        vexComponentsList.add(new VexButton("freefunction","§7免费功能","[local]button.png","[local]button_.png",-1,140,120,30,player1 -> {
             VexViewAPI.openGui(player, FunctionGui.FunctionFree(player));
         }));
         //标题
-        vexComponentsList.add(new VexText(75,15, Arrays.asList("辅助功能"),3));
+        vexComponentsList.add(new VexText(75,15, Arrays.asList("§1辅助功能"),3));
         return new VexGui("[local]gui.png",-1,-1,250,230,vexComponentsList);
     }
 
@@ -38,18 +38,18 @@ public class FunctionGui {
             VexViewAPI.openGui(player, FunctionGui.FunctionMain(player));
         }));
         //vexComponentsList.add(new VexImage("[local]inv.png",25,55,90,120));
-        vexComponentsList.add(new VexText(45,70,Arrays.asList("飞行功能","可以获得飞行能力10分钟","价格：50金币"),1));
+        vexComponentsList.add(new VexText(45,70,Arrays.asList("§6飞行功能","可以获得飞行能力10分钟","价格：50金币"),1));
         vexComponentsList.add(new VexButton("buyFly","飞行功能","[local]button.png","[local]button_.png",45,200,80,30));
 
         //vexComponentsList.add(new VexImage("[local]inv.png",150,55,90,120));
-        vexComponentsList.add(new VexText(170,70,Arrays.asList("定点传送","可以指定传送地点","价格：20金币"),1));
+        vexComponentsList.add(new VexText(170,70,Arrays.asList("§6定点传送","可以指定传送地点","价格：20金币"),1));
         vexComponentsList.add(new VexButton("buyTele","定点传送","[local]button.png","[local]button_.png",170,200,80,30,player1 -> {
             VexViewAPI.openGui(player,SetLocation(player));
         }));
 
         //vexComponentsList.add(new VexImage("[local]inv.png",270,55,90,120));
-        vexComponentsList.add(new VexText(290,70,Arrays.asList("属性增强","可以增加5点攻击力","价格：50金币"),1));
-        vexComponentsList.add(new VexButton("buyAttr","属性增强","[local]button.png","[local]button_.png",290,200,80,30));
+        vexComponentsList.add(new VexText(290,70,Arrays.asList("§6经验购买","一次升级","价格：20金币"),1));
+        vexComponentsList.add(new VexButton("buyAttr","经验购买","[local]button.png","[local]button_.png",290,200,80,30));
         //标题
         vexComponentsList.add(new VexText(140,15,Arrays.asList("付费功能"),3));
         return new VexGui("[local]gui.png",-1,-1,400,270,vexComponentsList);

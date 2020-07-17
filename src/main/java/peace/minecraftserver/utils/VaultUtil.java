@@ -2,7 +2,10 @@ package peace.minecraftserver.utils;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.util.UUID;
@@ -39,5 +42,16 @@ public class VaultUtil {
     public static boolean pay(UUID PlayerUUid,double price){
         OfflinePlayer offplayer=Bukkit.getOfflinePlayer(PlayerUUid);
         return economy.has(offplayer,price)&&economy.withdrawPlayer(offplayer,price).transactionSuccess();
+    }
+
+    public static void goPay(Player player,double price) {
+        if (VaultUtil.pay(player.getUniqueId(), price) == true) {
+            player.getWorld().playEffect(player.getLocation(), Effect.ANVIL_LAND, 1);
+            //加声音
+            player.sendMessage("您本次消费" + price);
+            player.sendMessage("您的余额还有：" + VaultUtil.seemoney(player.getUniqueId()));
+        } else {
+            player.sendMessage(("余额不足"));
+        }
     }
 }

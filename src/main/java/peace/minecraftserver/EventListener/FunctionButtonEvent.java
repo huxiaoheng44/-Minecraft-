@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.PermissionAttachment;
 import peace.minecraftserver.Entity.TeleHorse;
 import peace.minecraftserver.MinecraftServer;
@@ -46,12 +47,23 @@ public class FunctionButtonEvent implements Listener {
         }
         //属性强化
         else if(id.equalsIgnoreCase("buyAttr")){
+            VaultUtil.pay(player.getUniqueId(),20);
+            PermissionAttachment attachment = player.addAttachment(MinecraftServer.plugin,1200);
+            attachment.setPermission("fast",true);
+            MinecraftServer.plugin.getLogger().info(player.getName()+"获得100点经验");
+            //TitleAPI.sendTitle();
+            player.sendMessage("金币-100");
+            player.setExp(1);
 
         }
         //获取坐标
         else if(id.equalsIgnoreCase("getLoc")){
             Location l = player.getLocation();
             player.sendMessage("Your location:\n"+"x:"+l.getBlockX()+"\ny:"+l.getBlockY()+"\nz:"+l.getBlockZ());
+        }
+        //获取坐标
+        else if(id.equalsIgnoreCase("recover")){
+            player.setHealth(20);
         }
         //取消确认
         else if(id.equalsIgnoreCase("cancel")){

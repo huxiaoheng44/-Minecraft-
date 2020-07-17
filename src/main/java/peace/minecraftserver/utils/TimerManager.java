@@ -19,6 +19,13 @@ public class TimerManager {
         }
         return null;
     }
+    public Timer getTimerByUUID(String uuid) {
+        for (Timer timer : this.timer) {
+            if (timer.getPlayer().getUniqueId().toString().equals(uuid))
+                return timer;
+        }
+        return null;
+    }
 
     public void registerTimer(Timer timer) {
         if (!this.timer.contains(timer))
